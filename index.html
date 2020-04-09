@@ -12,12 +12,28 @@
 
 <body>
     <header>
-        <!-- Picture-->
-        <div class="row">
-            <div class="medium-9 align-center columns">
-                <img src="https://placehold.it/450x183&amp;text=Picture" alt="logo">
+        <div class="top-bar">
+            <div class="top-bar-right">
+              <ul class="dropdown menu" data-dropdown-menu>
+                <li>
+                  <a href="#">Top 20 Most Viewed Countries</a>
+                  <ul class="menu">
+                    <li><a href="#">USA</a></li>
+                    <li><a href="#">Italy</a></li>
+                    <li><a href="#">China</a></li>
+                  </ul>
+              </ul>
             </div>
-        </div>
+            <div class="top-bar-left">
+              <ul class="menu">
+                <li><input type="search" placeholder="Search"></li>
+                <li><button type="button" class="button">Search</button></li>
+              </ul>
+            </div>
+            <div style="display: table; margin: 0 auto;">
+              <div style="display: table-cell;">Welcome to our Website!</div>
+            </div>
+          </div>
 
     </header>
     <br>
@@ -27,9 +43,21 @@
     </label>
     <button type="button" class="button primary">Search</button>
 
-    <div class="container">
-        <div class="row">
 
+    <div class="container">
+      <div class="row">
+      <div class="columns-sm-3">
+        <h2 class="work-feature-block-header">Covid-19 Tips and Tricks</h2>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <h2>News Updates</h2>
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -37,7 +65,11 @@
 
 
             <footer>
-
+              <div class="mobile-bottom-bar">
+                <a href="#" class="footer-link">
+                  <i class="fa fa-cog"></i> <span class='footer-text'>Covid-19 Information</span>
+                </a>
+              </div>
             </footer>
             <!-- Links to Javascript/jQuery -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
