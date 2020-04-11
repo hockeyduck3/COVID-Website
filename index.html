@@ -54,10 +54,8 @@
       </div>
     </div>
     <!-- /Sub Navigation -->
-  
+
   </header>
-  
-    <br>
 
     <div class="grid-container">
       <div class="grid-x grid-margin-x small-up-2 medium-up-3">
@@ -68,28 +66,55 @@
               <h4>Covid-19 Articles</h4>
               
             </div>
+
           </div>
         </div>
-        <div class="cell">
-          <div class="card">
-            
-            <div class="card-section">
-              <h4>Country Financial Data</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
+      </div>
+      <div class="cell">
+        <div class="card">
+
+          <div class="card-section">
+            <h4>Country Financial Data</h4>
+            <p>Lorem ipsum dolor sit ammmmmejasdfghjklasdhf, consectetur adipiscing elit.</p>
           </div>
         </div>
-        <div class="cell">
-          <div class="card">
-            
-            <div class="card-section">
-              <h4>Current Cases</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+      <div class="cell">
+        <div class="card">
+
+          <div class="card-section">
+            <h4>Current Cases</h4>
+            <!-- all of the covid data is currently going into this div -->
+            <div>
+              <!-- displays the new cases today in the country  -->
+              <div class="newCases"></div>
+              <!-- displays the total actives cases as of today    -->
+              <div class="activeCases"></div>
+              <!-- Shows the ammount of recovered cases as of today   -->
+              <div class="recovered"></div>
+              <!-- Shows the deaths that have happned in that country today     -->
+              <div class="todaysDeaths"></div>
+              <!-- Shows the total amount of deaths in that country  -->
+              <div class="totalDeaths"></div>
+              <!-- Shows how many tests that country has performed  -->
+              <div class="testTotal"></div>
             </div>
+
           </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="column">
+    <div id="cases">
+      <div class="card">
+        <h4>Current Cases</h4>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
 
   <footer>
     <div class="row expanded callout secondary">
@@ -121,16 +146,16 @@
     </div>
   </footer>
 
-  
-    <!-- Links to Javascript/jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="Assets/Javascript/script.js"> </script>
-    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-  
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
+
+  <!-- Links to Javascript/jQuery -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="Assets/Javascript/script.js"> </script>
+  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
 </body>
 
 </html>
