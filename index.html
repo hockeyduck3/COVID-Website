@@ -7,37 +7,39 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>COVID-19 Info</title>
     <link rel="stylesheet" href="Assets/CSS/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.2/css/foundation-float.min.css">
+    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css">
 </head>
 
 <body>
-    <header>
-        <div class="top-bar">
-            <div class="top-bar-right">
-              <ul class="dropdown menu" data-dropdown-menu>
-                <li>
-                  <a href="#">Top 20 Most Viewed Countries</a>
-                  <ul class="menu">
-                    <li><a href="#">USA</a></li>
-                    <li><a href="#">Italy</a></li>
-                    <li><a href="#">China</a></li>
-                  </ul>
-              </ul>
-            </div>
-            <div class="top-bar-left">
-              <ul class="menu">
-                <li><input type="search" placeholder="Search"></li>
-                <li><button type="button" class="button">Search</button></li>
-              </ul>
-            </div>
-            <div style="display: table; margin: 0 auto;">
-              <div style="display: table-cell;">Welcome to our Website!</div>
-            </div>
-          </div>
-
-    </header>
+  <header>
+    <!-- Sub Navigation -->
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <li><input type="search" placeholder="Search"></li>
+          <li><button type="button" class="button">Search</button></li>
+        </ul>
+      </div>
+      <div style="-webkit-flex: 1 0 auto;-ms-flex: 1 0 auto;flex: 1 0 auto;">
+        <div>Welcome to our Website!</div>
+      </div>
+      <div class="top-bar-right">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li>
+            <a href="#">Top 20 Most Viewed Countries</a>
+            <ul class="menu">
+              <li><a href="#">USA</a></li>
+              <li><a href="#">Italy</a></li>
+              <li><a href="#">China</a></li>
+            </ul>
+        </ul>
+      </div>
+    </div>
+    <!-- /Sub Navigation -->
+  
+  </header>
     <br>
-
     <label>
         <textarea placeholder="Country Name" id="search"></textarea>
     </label>
@@ -75,22 +77,22 @@
           </div>
       </div>
   </div>
-
-
-
-
-
-
-            <footer>
-              <div class="blank"></div>
-            </footer>
+  <footer>
+    <div class="mobile-bottom-bar">
+      <a href="#" class="footer-link">
+        <i class="fa fa-cog"></i> <span class='footer-text'>Covid-19 Information</span>
+      </a>
+    </div>
+  </footer>
             <!-- Links to Javascript/jQuery -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
             <script src="Assets/Javascript/script.js"> </script>
-            <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-            <script>
-                $(document).foundation();
-            </script>
+    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
 </body>
 
 </html>
