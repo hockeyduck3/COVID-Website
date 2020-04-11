@@ -1,11 +1,22 @@
 header {
 }
 
+.grid-container {
+    padding-top: 50px;
+}
+
 .card {
     text-align: center;
     width: 275px;
     height: 400px;
-    border-color: black;; 
+    border-color: black;
+
+}
+
+h4 {
+    font-size: larger;
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 
