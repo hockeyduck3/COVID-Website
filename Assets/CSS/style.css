@@ -1,29 +1,22 @@
-.container {
-    margin-left: 250px;
-    margin-top: 150px;
+header {
 }
 
-.column {
-    float: left;
-    padding: 10px;
-}
+
+
+
+
 
 .card {
     text-align: center;
     width: 275px;
     height: 400px;
-    background-color: aquamarine !important;
-    margin: 50px;
+    border-color: black;; 
 }
 
-h2 {
-    font-size: 18px;
-}
 
-h3 {
-    font-size: 18px;
-}
-
-h3 {
-    font-size: 18px;
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
