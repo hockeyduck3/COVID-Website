@@ -74,3 +74,18 @@ function search () {
         }
     })
 }
+
+var settings = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://bloomberg-market-and-financial-news.p.rapidapi.com/stories/list?template=CURRENCY&id=usdjpy",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "bloomberg-market-and-financial-news.p.rapidapi.com",
+		"x-rapidapi-key": "b2328dbcaamshe375150f85e5095p15818ejsnbf708ecc2a82"
+	}
+}
+
+$.ajax(settings).then(function (response) {
+	console.log(response);
+});
