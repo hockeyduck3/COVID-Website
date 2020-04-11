@@ -17,10 +17,22 @@ function search () {
             "x-rapidapi-key": "61b6db55b3msh35943488960f57dp1ace38jsn832bfa80a52f"
         }
     }
-    
-    $.ajax(settings).done(function (response) {
+    $.ajax(settings).then(function (response) {
         console.log(response);
+        var newCases = response.response[0].cases.new
+     $(".newCases").text("New Cases Today: " + newCases) 
+     var activeCases = response.response[0].cases.active
+     $(".activeCases").text("Total Active Cases: " + activeCases) 
+     var recovered = response.response[0].cases.recovered
+     $(".recovered").text("Total Recovered: " + recovered) 
+     var todaysDeaths = response.response[0].deaths.new
+     $(".todaysDeaths").text("New Deaths Today: " + todaysDeaths) 
+     var totalDeaths = response.response[0].deaths.total
+     $(".totalDeaths").text("Total Deaths: " + totalDeaths) 
+     var testTotal = response.response[0].tests.total
+     $(".testTotal").text("Amount of Tests Done: " + testTotal) 
     });
+
 
     var date = new Date();
     var year = date.getFullYear();
