@@ -22,8 +22,11 @@ function search () {
         console.log(response);
     });
 
+    var date = new Date();
+    var year = date.getFullYear();
+
     $.ajax({
-        url:"https://api.nytimes.com/svc/search/v2/articlesearch.json?q=COVID-19&api-key=fba9vvYnRyI2O33HRL1AhwLy6ywpxVpH",
+        url:`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${userInput}+COVID19&fq=${year}&api-key=fba9vvYnRyI2O33HRL1AhwLy6ywpxVpH`,
         method: 'GET'
     }).then(function (response2) {
         console.log(response2)
