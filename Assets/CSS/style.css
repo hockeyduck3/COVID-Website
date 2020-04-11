@@ -12,7 +12,7 @@
     text-align: center;
     width: 275px;
     height: 400px;
-    background-color: aquamarine;
+    background-color: aquamarine !important;
     margin: 50px;
 }
 
