@@ -22,7 +22,14 @@ h4 {
     font-size: larger;
     text-decoration: underline;
     font-weight: bold;
+    color: #5d5c61;
 }
+
+a {
+    color: black;
+}
+
+
 
 
 footer {
@@ -31,4 +38,5 @@ footer {
     bottom: 0;
     width: 100%;
     text-align: center;
+    color: #5d5c61;
   }
