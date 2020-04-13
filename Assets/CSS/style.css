@@ -1,3 +1,13 @@
+html {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
 .grid-container {
     padding-top: 50px;
@@ -8,7 +18,7 @@
     width: 275px;
     height: 400px;
     border-color: black;
-
+    box-shadow: 0px 8px 10px -5px #444;
 }
 
 h4 {
@@ -19,9 +29,9 @@ h4 {
 
 
 footer {
-    position: fixed;
+    margin-top: auto;
     left: 0;
     bottom: 0;
     width: 100%;
     text-align: center;
-  }
+}
