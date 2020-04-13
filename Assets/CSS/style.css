@@ -25,6 +25,10 @@ background-color: #7395ae;
     box-shadow: 0px 8px 10px -5px #444;
 }
 
+.button {
+    border-radius: 0.5rem;
+}
+
 h4 {
     font-size: larger;
     text-decoration: underline;
@@ -35,9 +39,6 @@ h4 {
 a {
     color: black;
 }
-
-
-
 
 footer {
     margin-top: auto;
