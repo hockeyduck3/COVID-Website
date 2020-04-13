@@ -1,7 +1,7 @@
 $(document).ready(function () { 
     var userInput;
 
-    $('.button').click(clickSearch)
+    $('#search').click(clickSearch)
 
     $('.cityBtn').click(clickSearch)
 
@@ -36,18 +36,39 @@ $(document).ready(function () {
 
         $.ajax(settings).then(function (response) {
             console.log(response);
-            var newCases = response.response[0].cases.new
-            $(".newCases").text("New Cases Today: " + newCases) 
-            var activeCases = response.response[0].cases.active
-            $(".activeCases").text("Total Active Cases: " + activeCases) 
-            var recovered = response.response[0].cases.recovered
-            $(".recovered").text("Total Recovered: " + recovered) 
-            var todaysDeaths = response.response[0].deaths.new
-            $(".todaysDeaths").text("New Deaths Today: " + todaysDeaths) 
-            var totalDeaths = response.response[0].deaths.total
-            $(".totalDeaths").text("Total Deaths: " + totalDeaths) 
-            var testTotal = response.response[0].tests.total
-            $(".testTotal").text("Amount of Tests Done: " + testTotal) 
+            $('#currentCases').text(`Current Cases: ${response.parameters.country}`)
+
+            var newCases = response.response[0].cases.new;
+
+            if (newCases === null) {
+                $(".newCases").text('No new cases today');
+            } else {
+                $(".newCases").text("New Cases Today: " + newCases);
+            }
+            
+            var activeCases = response.response[0].cases.active;
+            
+            $(".activeCases").text("Total Active Cases: " + activeCases);
+            
+            var recovered = response.response[0].cases.recovered;
+            
+            $(".recovered").text("Total Recovered: " + recovered); 
+            
+            var todaysDeaths = response.response[0].deaths.new;
+
+            if (todaysDeaths === null) {
+                $(".todaysDeaths").text('No new deaths today'); 
+            } else {
+                $(".todaysDeaths").text("New Deaths Today: " + todaysDeaths); 
+            }
+            
+            var totalDeaths = response.response[0].deaths.total;
+            
+            $(".totalDeaths").text("Total Deaths: " + totalDeaths); 
+            
+            var testTotal = response.response[0].tests.total;
+            
+            $(".testTotal").text("Amount of Tests Done: " + testTotal);
         });
 
 
