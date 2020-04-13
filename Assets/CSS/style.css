@@ -19,7 +19,8 @@ background-color: #7395ae;
 
 .card {
     text-align: center;
-    width: 100%;
+    width: 275px;
+    height: 400px;
     border-color: black;
     background-color: #d8d9da;
     box-shadow: 0px 8px 10px -5px #444;
