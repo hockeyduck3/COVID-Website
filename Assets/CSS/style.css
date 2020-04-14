@@ -58,9 +58,8 @@ footer {
 
 #links {
 
-    font-size: larger;
-    text-decoration: underline;
-    font-weight: bold;
-    color: #5d5c61;
+    text-decoration: none; 
+    color: blue; 
+    font-size: medium
 
 }
