@@ -35,6 +35,9 @@ $(document).ready(function () {
 
         $.ajax(settings).then(function (response) {
             console.log(response);
+
+            $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, testTotal').empty();
+
             $('#currentCases').text(`Current Cases: ${response.parameters.country}`)
 
             var newCases = response.response[0].cases.new;
