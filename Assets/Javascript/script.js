@@ -13,7 +13,8 @@ $(document).ready(function () {
             return;
         } else {
             if ($('#search').val() === '') {
-                alert('Field cannot be empty')
+                $('.errorText').text('Search field cannot be empty');
+                modal.slideDown('fast');
             } else {
                 userInput = $('#search').val();
                 search();
@@ -22,7 +23,7 @@ $(document).ready(function () {
     }
 
     function search() {
-        var settings = {
+        var covidSettings = {
             "async": true,
             "crossDomain": true,
             "url": `https://covid-193.p.rapidapi.com/statistics?country=${userInput}`,
@@ -33,14 +34,14 @@ $(document).ready(function () {
             }
         }
 
-        $.ajax(settings).then(function (response) {
-            console.log(response);
+        $.ajax(covidSettings).then(function (covidResponse) {
+            console.log(covidResponse);
 
             $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, testTotal').empty();
 
-            $('#currentCases').text(`Current Cases: ${response.parameters.country}`)
+            $('#currentCases').text(`Current Cases: ${covidResponse.parameters.country}`)
 
-            var newCases = response.response[0].cases.new;
+            var newCases = covidResponse.response[0].cases.new;
 
             if (newCases === null) {
                 $(".newCases").text('No new cases today');
@@ -48,15 +49,15 @@ $(document).ready(function () {
                 $(".newCases").text("New Cases Today: " + newCases);
             }
 
-            var activeCases = response.response[0].cases.active;
+            var activeCases = covidResponse.response[0].cases.active;
 
             $(".activeCases").text("Total Active Cases: " + activeCases);
 
-            var recovered = response.response[0].cases.recovered;
+            var recovered = covidResponse.response[0].cases.recovered;
 
             $(".recovered").text("Total Recovered: " + recovered);
 
-            var todaysDeaths = response.response[0].deaths.new;
+            var todaysDeaths = covidResponse.response[0].deaths.new;
 
             if (todaysDeaths === null) {
                 $(".todaysDeaths").text('No new deaths today');
@@ -64,11 +65,11 @@ $(document).ready(function () {
                 $(".todaysDeaths").text("New Deaths Today: " + todaysDeaths);
             }
 
-            var totalDeaths = response.response[0].deaths.total;
+            var totalDeaths = covidResponse.response[0].deaths.total;
 
             $(".totalDeaths").text("Total Deaths: " + totalDeaths);
 
-            var testTotal = response.response[0].tests.total;
+            var testTotal = covidResponse.response[0].tests.total;
 
             if (testTotal === null) {
                 $(".testTotal").text("Amount of Tests Done: unknown");
@@ -85,23 +86,26 @@ $(document).ready(function () {
         $.ajax({
             url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${userInput}+COVID19&fq=${year}&api-key=fba9vvYnRyI2O33HRL1AhwLy6ywpxVpH`,
             method: 'GET'
-        }).then(function (response2) {
-            console.log(response2);
+        }).then(function (nyResponse) {
+            console.log(nyResponse);
 
             $('.articleSection').empty();
 
             for (var i = 0; i < 3; i++) {
                 var div = $('<div>');
               
-                if (response2.response.docs[i].multimedia[19] !== null) {
-                    var img = $('<img>').attr('src', `https://www.nytimes.com/${response2.response.docs[i].multimedia[19].url}`);
+                if (nyResponse.response.docs[i].multimedia.length !== 0) {
+                    var img = $('<img>').attr('src', `https://www.nytimes.com/${nyResponse.response.docs[i].multimedia[19].url}`);
+                } else {
+                    var img = $('<img>').attr('src', 'https://i.pinimg.com/originals/c4/81/1d/c4811d59c17568b2ea75b1327d0dfc9e.jpg');
+                    img.css('width', '150px')
                 }
 
                 var articleLink = $('<a>');
 
-                var articleTitle = $('<h4 style="text-decoration: none; color: blue; font-size: medium">').text(response2.response.docs[i].headline.main);
+                var articleTitle = $('<h4 style="text-decoration: none; color: blue; font-size: medium">').text(nyResponse.response.docs[i].headline.main);
                 
-                articleLink.append(articleTitle).attr({'href': response2.response.docs[i].web_url, 'target': '_blank'});
+                articleLink.append(articleTitle).attr({'href': nyResponse.response.docs[i].web_url, 'target': '_blank'});
 
                 div.append(img, articleLink);
 
@@ -110,7 +114,7 @@ $(document).ready(function () {
         })
     }
 
-    var settings3 = {
+    var bloomSettings = {
         "async": true,
         "crossDomain": true,
         "url": "https://bloomberg-market-and-financial-news.p.rapidapi.com/stories/list?template=CURRENCY&id=usdjpy",
@@ -121,39 +125,32 @@ $(document).ready(function () {
         }
     }
 
-    $.ajax(settings3).then(function (response3) {
-        console.log(response3);
-        $(".finArt1").text(response3.stories[0].title)
-        $(".finArt2").text(response3.stories[1].title)
-        $(".finArt3").text(response3.stories[2].title)
-        $(".finArt1").attr("href", response3.stories[0].shortURL)
-        $(".finArt2").attr("href", response3.stories[1].shortURL)
-        $(".finArt3").attr("href", response3.stories[2].shortURL)
-        // images for the articles 
-        $(".finArt1img").attr("src", response3.stories[0].thumbnailImage)
-        $(".finArt2img").attr("src", response3.stories[1].thumbnailImage)
-        $(".finArt3img").attr("src", response3.stories[2].thumbnailImage)
+    $.ajax(bloomSettings).then(function (bloomResponse) {
+        console.log(bloomResponse);
 
+        for (var i = 0; i < 3; i++) {
+            $(`.finArt${i}`).text(bloomResponse.stories[i].title);
+            $(`.finArt${i}`).attr("href", bloomResponse.stories[i].shortURL);
+            $(`.finArt${i}Img`).attr("src", bloomResponse.stories[i].thumbnailImage)
+        }
     });
 })
 
 
 
 // Modal code
-var modal = document.getElementById("errorModal");
-var btn = document.getElementById("myBtn");
-var span = document.getElementsByClassName("close")[0];
+var modal = $('#errorModal');
 
-btn.onclick = function () {
-    modal.style.display = "block";
-}
+$('#myBtn').click(function () {
+    modal.slideDown('fast')
+})
 
-span.onclick = function () {
-    modal.style.display = "none";
-}
+$('.close').click(function () {
+    modal.slideUp('fast');
+})
 
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+$(document).click(function (event) {
+    if ($(event.target).hasClass('modal')) {
+        modal.slideUp('fast');
     }
-}
+})
