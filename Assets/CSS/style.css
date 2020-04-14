@@ -80,8 +80,15 @@ footer {
     padding: 10px;
     border: 1px;
     border-radius: 0.5rem;
-    border-color: black;
+    border: 2px solid red;
     width: 60%;
+}
+
+.errorText {
+    margin-top: 10px;
+    color: red;
+    text-align: center;
+    font-size: 25px;
 }
 
 .close {
