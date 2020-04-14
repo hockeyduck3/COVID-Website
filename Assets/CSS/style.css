@@ -58,10 +58,10 @@ footer {
 
 #links {
 
-    text-decoration: none; 
-    color: blue; 
-    font-size: medium
-
+    font-size: larger;
+    text-decoration: underline;
+    font-weight: bold;
+    color: blue;
 }
 
 .modal {
