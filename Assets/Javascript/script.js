@@ -35,6 +35,9 @@ $(document).ready(function () {
 
         $.ajax(settings).then(function (response) {
             console.log(response);
+
+            $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, testTotal').empty();
+
             $('#currentCases').text(`Current Cases: ${response.parameters.country}`)
 
             var newCases = response.response[0].cases.new;
@@ -92,9 +95,9 @@ $(document).ready(function () {
 
                 var articleLink = $('<a>');
 
-                var articleTitle = $('<h4>').text(response2.response.docs[i].headline.main);
-
-                articleLink.append(articleTitle).attr({ 'href': response2.response.docs[i].web_url, 'target': '_blank' });
+                var articleTitle = $('<h4 style="text-decoration: none; color: blue; font-size: medium">').text(response2.response.docs[i].headline.main);
+                
+                articleLink.append(articleTitle).attr({'href': response2.response.docs[i].web_url, 'target': '_blank'});
 
                 div.append(articleLink);
 
