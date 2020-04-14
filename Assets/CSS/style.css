@@ -12,16 +12,7 @@ body {
     background-color: #7395ae;
 }
 
-header {
-    background-color: lightgray;
-
-}
-
-.top-bar {
-    background-color: lightgray;
-}
-
-.menu {
+header, .top-bar, .menu {
     background-color: lightgray;
 }
 
@@ -39,6 +30,10 @@ header {
 
 .button {
     border-radius: 0.5rem;
+}
+
+.top20 {
+    margin-top: 1rem;
 }
 
 h4 {
