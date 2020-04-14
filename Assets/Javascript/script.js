@@ -103,7 +103,7 @@ $(document).ready(function () {
         })
     }
 
-    var settings = {
+    var settings3 = {
         "async": true,
         "crossDomain": true,
         "url": "https://bloomberg-market-and-financial-news.p.rapidapi.com/stories/list?template=CURRENCY&id=usdjpy",
@@ -114,7 +114,14 @@ $(document).ready(function () {
         }
     }
 
-    $.ajax(settings).then(function (response) {
-        console.log(response);
+    $.ajax(settings3).then(function (response3) {
+        console.log(response3);
+        $(".finArt1").text(response3.stories[1].title)
+        $(".finArt2").text(response3.stories[2].title)
+        $(".finArt3").text(response3.stories[3].title)
+        $(".finArt1").attr("href", response3.stories[1].shortURL)
+        $(".finArt2").attr("href", response3.stories[2].shortURL)
+        $(".finArt3").attr("href", response3.stories[3].shortURL)
+        
     });
 })
