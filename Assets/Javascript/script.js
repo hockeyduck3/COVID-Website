@@ -94,7 +94,7 @@ $(document).ready(function () {
 
                 var articleTitle = $('<h4>').text(response2.response.docs[i].headline.main);
                 
-                articleLink.append(articleTitle).attr({'href': response2.response.docs[i].web_url, 'target': '_blank'});S
+                articleLink.append(articleTitle).attr({'href': response2.response.docs[i].web_url, 'target': '_blank'});
 
                 div.append(articleLink);
 
