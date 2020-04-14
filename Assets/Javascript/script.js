@@ -1,17 +1,15 @@
-var trueOrFalse = false;
-
-$(document).ready(function () { 
+$(document).ready(function () {
     var userInput;
 
     $('.button').click(clickSearch)
 
     $('.cityBtn').click(clickSearch)
 
-    function clickSearch (event) {
+    function clickSearch(event) {
         if ($(event.target).hasClass('cityBtn')) {
             userInput = $(event.target).text();
             search();
-        } else if ($(event.target).hasClass('top20')){
+        } else if ($(event.target).hasClass('top20')) {
             return;
         } else {
             if ($('#search').val() === '') {
@@ -23,7 +21,7 @@ $(document).ready(function () {
         }
     }
 
-    function search () {
+    function search() {
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -49,27 +47,27 @@ $(document).ready(function () {
             } else {
                 $(".newCases").text("New Cases Today: " + newCases);
             }
-            
+
             var activeCases = response.response[0].cases.active;
-            
+
             $(".activeCases").text("Total Active Cases: " + activeCases);
-            
+
             var recovered = response.response[0].cases.recovered;
-            
-            $(".recovered").text("Total Recovered: " + recovered); 
-            
+
+            $(".recovered").text("Total Recovered: " + recovered);
+
             var todaysDeaths = response.response[0].deaths.new;
 
             if (todaysDeaths === null) {
-                $(".todaysDeaths").text('No new deaths today'); 
+                $(".todaysDeaths").text('No new deaths today');
             } else {
-                $(".todaysDeaths").text("New Deaths Today: " + todaysDeaths); 
+                $(".todaysDeaths").text("New Deaths Today: " + todaysDeaths);
             }
-            
+
             var totalDeaths = response.response[0].deaths.total;
-            
-            $(".totalDeaths").text("Total Deaths: " + totalDeaths); 
-            
+
+            $(".totalDeaths").text("Total Deaths: " + totalDeaths);
+
             var testTotal = response.response[0].tests.total;
 
             if (testTotal === null) {
@@ -77,7 +75,7 @@ $(document).ready(function () {
             } else {
                 $(".testTotal").text("Amount of Tests Done: " + testTotal);
             }
-            
+
         });
 
 
@@ -85,7 +83,7 @@ $(document).ready(function () {
         var year = date.getFullYear();
 
         $.ajax({
-            url:`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${userInput}+COVID19&fq=${year}&api-key=fba9vvYnRyI2O33HRL1AhwLy6ywpxVpH`,
+            url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${userInput}+COVID19&fq=${year}&api-key=fba9vvYnRyI2O33HRL1AhwLy6ywpxVpH`,
             method: 'GET'
         }).then(function (response2) {
             console.log(response2);
@@ -94,7 +92,7 @@ $(document).ready(function () {
 
             for (var i = 0; i < 3; i++) {
                 var div = $('<div>');
-
+              
                 if (response2.response.docs[i].multimedia[19] !== null) {
                     var img = $('<img>').attr('src', `https://www.nytimes.com/${response2.response.docs[i].multimedia[19].url}`);
                 }
@@ -125,12 +123,37 @@ $(document).ready(function () {
 
     $.ajax(settings3).then(function (response3) {
         console.log(response3);
-        $(".finArt1").text(response3.stories[1].title)
-        $(".finArt2").text(response3.stories[2].title)
-        $(".finArt3").text(response3.stories[3].title)
-        $(".finArt1").attr("href", response3.stories[1].shortURL)
-        $(".finArt2").attr("href", response3.stories[2].shortURL)
-        $(".finArt3").attr("href", response3.stories[3].shortURL)
-        
+        $(".finArt1").text(response3.stories[0].title)
+        $(".finArt2").text(response3.stories[1].title)
+        $(".finArt3").text(response3.stories[2].title)
+        $(".finArt1").attr("href", response3.stories[0].shortURL)
+        $(".finArt2").attr("href", response3.stories[1].shortURL)
+        $(".finArt3").attr("href", response3.stories[2].shortURL)
+        // images for the articles 
+        $(".finArt1img").attr("src", response3.stories[0].thumbnailImage)
+        $(".finArt2img").attr("src", response3.stories[1].thumbnailImage)
+        $(".finArt3img").attr("src", response3.stories[2].thumbnailImage)
+
     });
 })
+
+
+
+// Modal code
+var modal = document.getElementById("errorModal");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function () {
+    modal.style.display = "block";
+}
+
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
