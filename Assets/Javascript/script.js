@@ -1,3 +1,5 @@
+var trueOrFalse = false;
+
 $(document).ready(function () { 
     var userInput;
 
@@ -92,14 +94,18 @@ $(document).ready(function () {
 
             for (var i = 0; i < 3; i++) {
                 var div = $('<div>');
-                
+
+                if (response2.response.docs[i].multimedia[19] !== null) {
+                    var img = $('<img>').attr('src', `https://www.nytimes.com/${response2.response.docs[i].multimedia[19].url}`);
+                }
+
                 var articleLink = $('<a>');
 
                 var articleTitle = $('<h4 style="text-decoration: none; color: blue; font-size: medium">').text(response2.response.docs[i].headline.main);
                 
                 articleLink.append(articleTitle).attr({'href': response2.response.docs[i].web_url, 'target': '_blank'});
 
-                div.append(articleLink);
+                div.append(img, articleLink);
 
                 $('.articleSection').append(div);
             }
