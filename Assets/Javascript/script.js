@@ -6,8 +6,6 @@ $(document).ready(function () {
     $('.cityBtn').click(clickSearch)
 
     function clickSearch (event) {
-        console.log(event.target)
-
         if ($(event.target).hasClass('cityBtn')) {
             userInput = $(event.target).text();
             search();
@@ -91,16 +89,16 @@ $(document).ready(function () {
 
             for (var i = 0; i < 3; i++) {
                 var div = $('<div>');
+                
+                var articleLink = $('<a>');
 
-                var articleTitle = $('<h4>').text(response2.response.docs[i].abstract);
+                var articleTitle = $('<h4>').text(response2.response.docs[i].headline.main);
+                
+                articleLink.append(articleTitle).attr({'href': response2.response.docs[i].web_url, 'target': '_blank'});S
 
-                var articleLink = $('<a>').text('Article Link');
-                articleLink.attr('href', response2.response.docs[i].web_url);
-                articleLink.attr('target', '_blank')
+                div.append(articleLink);
 
-                div.append(articleTitle, articleLink);
-
-                $('.articleSection').append(div)
+                $('.articleSection').append(div);
             }
         })
     }
