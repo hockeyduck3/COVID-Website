@@ -1,7 +1,7 @@
 $(document).ready(function () { 
     var userInput;
 
-    $('#search').click(clickSearch)
+    $('.button').click(clickSearch)
 
     $('.cityBtn').click(clickSearch)
 
@@ -11,6 +11,8 @@ $(document).ready(function () {
         if ($(event.target).hasClass('cityBtn')) {
             userInput = $(event.target).text();
             search();
+        } else if ($(event.target).hasClass('top20')){
+            return;
         } else {
             if ($('#search').val() === '') {
                 alert('Field cannot be empty')
@@ -19,7 +21,6 @@ $(document).ready(function () {
                 search();
             }
         }
-
     }
 
     function search () {
@@ -67,8 +68,13 @@ $(document).ready(function () {
             $(".totalDeaths").text("Total Deaths: " + totalDeaths); 
             
             var testTotal = response.response[0].tests.total;
+
+            if (testTotal === null) {
+                $(".testTotal").text("Amount of Tests Done: unknown");
+            } else {
+                $(".testTotal").text("Amount of Tests Done: " + testTotal);
+            }
             
-            $(".testTotal").text("Amount of Tests Done: " + testTotal);
         });
 
 
@@ -76,10 +82,12 @@ $(document).ready(function () {
         var year = date.getFullYear();
 
         $.ajax({
-            url:`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=COVID19&fq=${year}&api-key=fba9vvYnRyI2O33HRL1AhwLy6ywpxVpH`,
+            url:`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${userInput}+COVID19&fq=${year}&api-key=fba9vvYnRyI2O33HRL1AhwLy6ywpxVpH`,
             method: 'GET'
         }).then(function (response2) {
-            console.log(response2)
+            console.log(response2);
+
+            $('.articleSection').empty();
 
             for (var i = 0; i < 3; i++) {
                 var div = $('<div>');
