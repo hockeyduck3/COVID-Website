@@ -141,10 +141,6 @@ $(document).ready(function () {
 // Modal code
 var modal = $('#errorModal');
 
-$('#myBtn').click(function () {
-    modal.slideDown('fast')
-})
-
 $('.close').click(function () {
     modal.slideUp('fast');
 })
