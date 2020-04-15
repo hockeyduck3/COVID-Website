@@ -3,6 +3,18 @@ $(document).ready(function () {
 
     var userInput;
 
+    $('#search').on('keydown', function (event) {
+        if (event.keyCode === 13) {
+            if ($('#search').val().trim() === '') {
+                $('.errorText').text('Search field cannot be empty');
+                modal.slideDown('fast');
+            } else {
+                userInput = $('#search').val().trim();
+                search();
+            }
+        } 
+    })
+
     $('.button').click(clickSearch)
 
     $('.cityBtn').click(clickSearch)
@@ -14,11 +26,11 @@ $(document).ready(function () {
         } else if ($(event.target).hasClass('top20')) {
             return;
         } else {
-            if ($('#search').val() === '') {
+            if ($('#search').val().trim() === '') {
                 $('.errorText').text('Search field cannot be empty');
                 modal.slideDown('fast');
             } else {
-                userInput = $('#search').val();
+                userInput = $('#search').val().trim();
                 search();
             }
         }
@@ -73,6 +85,8 @@ $(document).ready(function () {
                     "x-rapidapi-key": "7e99fbd181msh93eb9db94711373p1b2374jsn70b4f002fe55"
                 }
             }
+
+            // This is commented out so we don't go over our 500 requests limit. We'll turn it back on when we need to test it
         
             // $.ajax(bloomSettings).then(function (bloomResponse) {
             //     console.log(bloomResponse);
