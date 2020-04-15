@@ -25,61 +25,67 @@ $(document).ready(function () {
     }
 
     function load() {
-        var date = new Date();
-        var year = date.getFullYear();
+        if (localStorage.getItem('lastSearch') !== null) {
+            userInput = localStorage.getItem('lastSearch');
 
-        $.ajax({
-            url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=COVID19&fq=${year}&api-key=fba9vvYnRyI2O33HRL1AhwLy6ywpxVpH`,
-            method: 'GET'
-        }).then(function (nyResponse) {
-            console.log(nyResponse);
+            search();
+        } else {
+            var date = new Date();
+            var year = date.getFullYear();
 
-            $('.articleSection').empty();
+            $.ajax({
+                url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=COVID19&fq=${year}&api-key=fba9vvYnRyI2O33HRL1AhwLy6ywpxVpH`,
+                method: 'GET'
+            }).then(function (nyResponse) {
+                console.log(nyResponse);
 
-            for (var i = 0; i < 3; i++) {
-                var div = $('<div>');
-              
-                if (nyResponse.response.docs[i].multimedia.length !== 0) {
-                    var img = $('<img>').attr({'src': `https://www.nytimes.com/${nyResponse.response.docs[i].multimedia[19].url}`, 'alt': 'New York Times Thumbnail'});
-                } else {
-                    var img = $('<img>').attr({'src': 'https://i.pinimg.com/originals/c4/81/1d/c4811d59c17568b2ea75b1327d0dfc9e.jpg', 'alt': 'New York Times Thumbnail'});
-                    img.css('width', '150px')
-                }
+                $('.articleSection').empty();
 
-                var articleLink = $('<a>');
-
-                var articleTitle = $('<h4 style="text-decoration: none; color: blue; font-size: medium">').text(nyResponse.response.docs[i].headline.main);
+                for (var i = 0; i < 3; i++) {
+                    var div = $('<div>');
                 
-                articleLink.append(articleTitle).attr({'href': nyResponse.response.docs[i].web_url, 'target': '_blank'});
+                    if (nyResponse.response.docs[i].multimedia.length !== 0) {
+                        var img = $('<img>').attr({'src': `https://www.nytimes.com/${nyResponse.response.docs[i].multimedia[19].url}`, 'alt': 'New York Times Thumbnail'});
+                    } else {
+                        var img = $('<img>').attr({'src': 'https://i.pinimg.com/originals/c4/81/1d/c4811d59c17568b2ea75b1327d0dfc9e.jpg', 'alt': 'New York Times Thumbnail'});
+                        img.css('width', '150px')
+                    }
 
-                div.append(img, articleLink);
+                    var articleLink = $('<a>');
 
-                $('.articleSection').append(div);
+                    var articleTitle = $('<h4 style="text-decoration: none; color: blue; font-size: medium">').text(nyResponse.response.docs[i].headline.main);
+                    
+                    articleLink.append(articleTitle).attr({'href': nyResponse.response.docs[i].web_url, 'target': '_blank'});
+
+                    div.append(img, articleLink);
+
+                    $('.articleSection').append(div);
+                }
+            })
+
+            var bloomSettings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://bloomberg-market-and-financial-news.p.rapidapi.com/stories/list?template=CURRENCY&id=usdjpy",
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-host": "bloomberg-market-and-financial-news.p.rapidapi.com",
+                    "x-rapidapi-key": "7e99fbd181msh93eb9db94711373p1b2374jsn70b4f002fe55"
+                }
             }
-        })
-
-        var bloomSettings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://bloomberg-market-and-financial-news.p.rapidapi.com/stories/list?template=CURRENCY&id=usdjpy",
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "bloomberg-market-and-financial-news.p.rapidapi.com",
-                "x-rapidapi-key": "7e99fbd181msh93eb9db94711373p1b2374jsn70b4f002fe55"
-            }
+        
+            // $.ajax(bloomSettings).then(function (bloomResponse) {
+            //     console.log(bloomResponse);
+        
+            //     for (var i = 0; i < 3; i++) {
+            //         $(`.finArt${i}`).text(bloomResponse.stories[i].title);
+            //         $(`.finArt${i}`).attr("href", bloomResponse.stories[i].shortURL);
+            //         $(`.finArt${i}Img`).attr("src", bloomResponse.stories[i].thumbnailImage)
+            //     }
+            // }).catch(function (error) {
+            //     console.log(error)
+            // });
         }
-    
-        // $.ajax(bloomSettings).then(function (bloomResponse) {
-        //     console.log(bloomResponse);
-    
-        //     for (var i = 0; i < 3; i++) {
-        //         $(`.finArt${i}`).text(bloomResponse.stories[i].title);
-        //         $(`.finArt${i}`).attr("href", bloomResponse.stories[i].shortURL);
-        //         $(`.finArt${i}Img`).attr("src", bloomResponse.stories[i].thumbnailImage)
-        //     }
-        // }).catch(function (error) {
-        //     console.log(error)
-        // });
     }
 
     function search() {
@@ -96,6 +102,8 @@ $(document).ready(function () {
 
         $.ajax(covidSettings).then(function (covidResponse) {
             console.log(covidResponse);
+
+            localStorage.setItem('lastSearch', covidResponse.parameters.country)
 
             $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, testTotal').empty();
 
