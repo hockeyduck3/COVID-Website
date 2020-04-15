@@ -40,9 +40,9 @@ $(document).ready(function () {
                 var div = $('<div>');
               
                 if (nyResponse.response.docs[i].multimedia.length !== 0) {
-                    var img = $('<img>').attr('src', `https://www.nytimes.com/${nyResponse.response.docs[i].multimedia[19].url}`);
+                    var img = $('<img>').attr({'src': `https://www.nytimes.com/${nyResponse.response.docs[i].multimedia[19].url}`, 'alt': 'New York Times Thumbnail'});
                 } else {
-                    var img = $('<img>').attr('src', 'https://i.pinimg.com/originals/c4/81/1d/c4811d59c17568b2ea75b1327d0dfc9e.jpg');
+                    var img = $('<img>').attr({'src': 'https://i.pinimg.com/originals/c4/81/1d/c4811d59c17568b2ea75b1327d0dfc9e.jpg', 'alt': 'New York Times Thumbnail'});
                     img.css('width', '150px')
                 }
 
