@@ -10,7 +10,7 @@ $(document).ready(function () {
                 modal.slideDown('fast');
             } else {
                 userInput = $('#search').val().trim();
-                search();
+                userInputCheck();
             }
         } 
     })
@@ -22,7 +22,8 @@ $(document).ready(function () {
     function clickSearch(event) {
         if ($(event.target).hasClass('cityBtn')) {
             userInput = $(event.target).text();
-            search();
+            userInputCheck();
+            
         } else if ($(event.target).hasClass('top20')) {
             return;
         } else {
@@ -31,9 +32,21 @@ $(document).ready(function () {
                 modal.slideDown('fast');
             } else {
                 userInput = $('#search').val().trim();
-                search();
+                userInputCheck();
             }
         }
+    }
+
+    function userInputCheck() {
+        if (userInput === 'United States' || userInput === 'united states' || userInput === 'America' || userInput === 'america') {
+            userInput = 'USA';
+        }
+
+        if (userInput === 'South Korea' || userInput === 'south korea') {
+            userInput = 'S-Korea';
+        }
+
+        search();
     }
 
     function load() {
@@ -116,6 +129,11 @@ $(document).ready(function () {
 
         $.ajax(covidSettings).then(function (covidResponse) {
             console.log(covidResponse);
+
+            if (covidResponse.results === 0) {
+                $('.errorText').text('Country could not be found :(');
+                modal.slideDown('fast');
+            }
 
             localStorage.setItem('lastSearch', covidResponse.parameters.country)
 
