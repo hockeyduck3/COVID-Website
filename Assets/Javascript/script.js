@@ -45,57 +45,75 @@ $(document).ready(function () {
         if (userInput === 'South Korea' || userInput === 'south korea') {
             userInput = 'S-Korea';
         }
+
         if (userInput === 'antigua and barbuda' || userInput === 'Antigua and Barbuda') {
             userInput = 'Antigua-and-Barbuda';
         }
+
         if (userInput === 'Bosnia and Herzegovina' || userInput === 'bosnia and herzegovina') {
             userInput = 'Bosnia-and-Herzegovina';
         }
+
         if (userInput === 'Cayman Islands' || userInput === 'cayman islands') {
             userInput = 'Cayman-Islands';
         }
+
         if (userInput === 'Burkina Faso' || userInput === 'burkina faso') {
             userInput = 'Burkina-Faso';
         }
+
         if (userInput === 'Channel Islands' || userInput === 'channel islands') {
             userInput = 'Channel-Islands';
         }
+
         if (userInput === 'Costa Rica' || userInput === 'costa rica') {
             userInput = 'Costa-Rica';
         }
+
         if (userInput === 'Dominican Republic' || userInput === 'dominican republic') {
             userInput = 'Dominican-Republic';
         }
+
         if (userInput === 'El salvador' || userInput === 'El Salvador') {
             userInput = 'El-Salvador';
         }
+
         if (userInput === 'Hong Kong' || userInput === 'hong kong') {
             userInput = 'Hong-Kong';
         }
+
         if (userInput === 'Isle of Man' || userInput === 'isle-of man') {
             userInput = 'Isle-of-Man';
         }
+
         if (userInput === 'Ivory Coast"' || userInput === 'ivory coast"') {
             userInput = 'Ivory-Coast"';
         }
+
         if (userInput === 'New Caledonia' || userInput === 'new caledonia') {
             userInput = 'New-Caledonia';
         }
+
         if (userInput === 'New Zealand' || userInput === 'new zealand') {
             userInput = 'New-Zealand';
         }
+
         if (userInput === 'Papua New Guinea' || userInput === 'papua new guinea') {
             userInput = 'Papua-New-Guinea';
         }
+        
         if (userInput === 'Puerto Rico' || userInput === 'puerto rico') {
             userInput = 'Puerto-Rico';
         }
+
         if (userInput === 'saudi arabia' || userInput === 'Saudi Arabia') {
             userInput = 'Saudi-Arabia';
         }
+
         if (userInput === 'south africa' || userInput === 'South Africa') {
             userInput = 'South-Africa';
         }
+
         if (userInput === 'Vatican City' || userInput === 'vatican city') {
             userInput = 'Vatican-City';
         }
@@ -160,6 +178,9 @@ $(document).ready(function () {
                 "x-rapidapi-key": "61b6db55b3msh35943488960f57dp1ace38jsn832bfa80a52f"
             }
         }
+
+        $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, .testTotal').slideUp('fast')
+
         // call to get data related to covid 19 in a country 
         $.ajax(covidSettings).then(function (covidResponse) {
             console.log(covidResponse);
@@ -211,11 +232,37 @@ $(document).ready(function () {
                 $(".testTotal").text("Amount of Tests Done: " + testTotal);
             }
 
+            $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, .testTotal').slideDown('slow');
+
         });
 
+        var bloomSettings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://bloomberg-market-and-financial-news.p.rapidapi.com/stories/list?template=CURRENCY&id=usdjpy",
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "bloomberg-market-and-financial-news.p.rapidapi.com",
+                "x-rapidapi-key": "b2328dbcaamshe375150f85e5095p15818ejsnbf708ecc2a82"
+            }
+        }
+
+        // call to display the bloomberg financial articles 
+        $.ajax(bloomSettings).then(function (bloomResponse) {
+            console.log(bloomResponse);
+    
+            for (var i = 0; i < 3; i++) {
+                $(`.finArt${i}`).text(bloomResponse.stories[i].title);
+                $(`.finArt${i}`).attr("href", bloomResponse.stories[i].shortURL);
+                $(`.finArt${i}Img`).attr("src", bloomResponse.stories[i].thumbnailImage).addClass("imgShadow")
+            }
+        }).catch(function (error) {
+            console.log(error)
+        });
 
         var date = new Date();
         var year = date.getFullYear();
+        $('.articleSection0, .articleSection1, .articleSection2').fadeOut('slow');
 
         $.ajax({
             url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${userInput}+COVID19&fq=${year}&api-key=fba9vvYnRyI2O33HRL1AhwLy6ywpxVpH`,
@@ -245,32 +292,11 @@ $(document).ready(function () {
               
                 div.append(img, articleParagraph);
 
-                $(`.articleSection${i}`).append(div);
+                $(`.articleSection${i}`).append(div).fadeIn('slow');
+
+                
             }
         })
-
-        var bloomSettings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://bloomberg-market-and-financial-news.p.rapidapi.com/stories/list?template=CURRENCY&id=usdjpy",
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "bloomberg-market-and-financial-news.p.rapidapi.com",
-                "x-rapidapi-key": "b2328dbcaamshe375150f85e5095p15818ejsnbf708ecc2a82"
-            }
-        }
-        // call to display the bloomberg financial articles 
-        $.ajax(bloomSettings).then(function (bloomResponse) {
-            console.log(bloomResponse);
-    
-            for (var i = 0; i < 3; i++) {
-                $(`.finArt${i}`).text(bloomResponse.stories[i].title);
-                $(`.finArt${i}`).attr("href", bloomResponse.stories[i].shortURL);
-                $(`.finArt${i}Img`).attr("src", bloomResponse.stories[i].thumbnailImage).addClass("imgShadow")
-            }
-        }).catch(function (error) {
-            console.log(error)
-        });
     }
 })
 
