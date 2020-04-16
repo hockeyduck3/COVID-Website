@@ -57,7 +57,7 @@ h1 {
     outline: black;
 }
 
-h4, #links {
+h4{
     font-size: x-large;
     text-decoration: underline;
     font-weight: bold;
@@ -65,6 +65,11 @@ h4, #links {
     font-family: 'Cinzel', serif;
 }
 
+#links {
+
+
+
+}
 h5 {
     text-align: center;
 }
@@ -137,7 +142,7 @@ footer {
     border-radius: 0.5rem;
 }
 
-img {
+.imgShadow {
     border: 1px solid;
     padding: 2px;
     box-shadow: 2px 5px #3b3b3b;
@@ -173,4 +178,9 @@ p {
 
 .copyright {
     color: white !important;
+}
+
+.disclaimer {
+font-size: 12px;
+color: lightgray;
 }

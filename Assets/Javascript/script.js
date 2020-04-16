@@ -36,7 +36,7 @@ $(document).ready(function () {
             }
         }
     }
-
+    // function to account for the response on the covid API - many countries with 2 words in the name have a "-" seperating the words, this accounts for the user not knowing this. 
     function userInputCheck() {
         if (userInput === 'United States' || userInput === 'united states' || userInput === 'America' || userInput === 'america') {
             userInput = 'USA';
@@ -45,19 +45,75 @@ $(document).ready(function () {
         if (userInput === 'South Korea' || userInput === 'south korea') {
             userInput = 'S-Korea';
         }
+        if (userInput === 'antigua and barbuda' || userInput === 'Antigua and Barbuda') {
+            userInput = 'Antigua-and-Barbuda';
+        }
+        if (userInput === 'Bosnia and Herzegovina' || userInput === 'bosnia and herzegovina') {
+            userInput = 'Bosnia-and-Herzegovina';
+        }
+        if (userInput === 'Cayman Islands' || userInput === 'cayman islands') {
+            userInput = 'Cayman-Islands';
+        }
+        if (userInput === 'Burkina Faso' || userInput === 'burkina faso') {
+            userInput = 'Burkina-Faso';
+        }
+        if (userInput === 'Channel Islands' || userInput === 'channel islands') {
+            userInput = 'Channel-Islands';
+        }
+        if (userInput === 'Costa Rica' || userInput === 'costa rica') {
+            userInput = 'Costa-Rica';
+        }
+        if (userInput === 'Dominican Republic' || userInput === 'dominican republic') {
+            userInput = 'Dominican-Republic';
+        }
+        if (userInput === 'El salvador' || userInput === 'El Salvador') {
+            userInput = 'El-Salvador';
+        }
+        if (userInput === 'Hong Kong' || userInput === 'hong kong') {
+            userInput = 'Hong-Kong';
+        }
+        if (userInput === 'Isle of Man' || userInput === 'isle-of man') {
+            userInput = 'Isle-of-Man';
+        }
+        if (userInput === 'Ivory Coast"' || userInput === 'ivory coast"') {
+            userInput = 'Ivory-Coast"';
+        }
+        if (userInput === 'New Caledonia' || userInput === 'new caledonia') {
+            userInput = 'New-Caledonia';
+        }
+        if (userInput === 'New Zealand' || userInput === 'new zealand') {
+            userInput = 'New-Zealand';
+        }
+        if (userInput === 'Papua New Guinea' || userInput === 'papua new guinea') {
+            userInput = 'Papua-New-Guinea';
+        }
+        if (userInput === 'Puerto Rico' || userInput === 'puerto rico') {
+            userInput = 'Puerto-Rico';
+        }
+        if (userInput === 'saudi arabia' || userInput === 'Saudi Arabia') {
+            userInput = 'Saudi-Arabia';
+        }
+        if (userInput === 'south africa' || userInput === 'South Africa') {
+            userInput = 'South-Africa';
+        }
+        if (userInput === 'Vatican City' || userInput === 'vatican city') {
+            userInput = 'Vatican-City';
+        }
+       
 
         search();
     }
 
     function load() {
         if (localStorage.getItem('lastSearch') !== null) {
+            // grabs the last searched country from local storage and loads it when a user returns to the site
             userInput = localStorage.getItem('lastSearch');
 
             search();
         } else {
             var date = new Date();
             var year = date.getFullYear();
-
+            // call to display NYT artciles 
             $.ajax({
                 url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=COVID19&fq=${year}&api-key=fba9vvYnRyI2O33HRL1AhwLy6ywpxVpH`,
                 method: 'GET'
@@ -71,9 +127,11 @@ $(document).ready(function () {
                 
                     if (nyResponse.response.docs[i].multimedia.length !== 0) {
                         var img = $('<img>').attr({'src': `https://www.nytimes.com/${nyResponse.response.docs[i].multimedia[19].url}`, 'alt': 'New York Times Thumbnail'});
+                        $(img).addClass("imgShadow")
                     } else {
                         var img = $('<img>').attr({'src': 'https://i.pinimg.com/originals/c4/81/1d/c4811d59c17568b2ea75b1327d0dfc9e.jpg', 'alt': 'New York Times Thumbnail'});
                         img.css('width', '150px')
+                        $(img).addClass("imgShadow")
                     }
 
                     // var articleLink = $('<a>');
@@ -88,30 +146,6 @@ $(document).ready(function () {
                 }
             })
 
-            var bloomSettings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://bloomberg-market-and-financial-news.p.rapidapi.com/stories/list?template=CURRENCY&id=usdjpy",
-                "method": "GET",
-                "headers": {
-                    "x-rapidapi-host": "bloomberg-market-and-financial-news.p.rapidapi.com",
-                    "x-rapidapi-key": "7e99fbd181msh93eb9db94711373p1b2374jsn70b4f002fe55"
-                }
-            }
-
-            // This is commented out so we don't go over our 500 requests limit. We'll turn it back on when we need to test it
-        
-            $.ajax(bloomSettings).then(function (bloomResponse) {
-                console.log(bloomResponse);
-        
-                for (var i = 0; i < 3; i++) {
-                    $(`.finArt${i}`).text(bloomResponse.stories[i].title);
-                    $(`.finArt${i}`).attr("href", bloomResponse.stories[i].shortURL);
-                    $(`.finArt${i}Img`).attr("src", bloomResponse.stories[i].thumbnailImage)
-                }
-            }).catch(function (error) {
-                console.log(error)
-            });
         }
     }
 
@@ -126,10 +160,10 @@ $(document).ready(function () {
                 "x-rapidapi-key": "61b6db55b3msh35943488960f57dp1ace38jsn832bfa80a52f"
             }
         }
-
+        // call to get data related to covid 19 in a country 
         $.ajax(covidSettings).then(function (covidResponse) {
             console.log(covidResponse);
-
+            // displays modal if the country could not be found
             if (covidResponse.results === 0) {
                 $('.errorText').text('Country could not be found :(');
                 modal.slideDown('fast');
@@ -142,7 +176,7 @@ $(document).ready(function () {
             $('#currentCases').text(`Current Cases: ${covidResponse.parameters.country}`)
 
             var newCases = covidResponse.response[0].cases.new;
-
+            // if the response is null for cases today changes display from null to no new cases today otherwise displays the new cases
             if (newCases === null) {
                 $(".newCases").text('No new cases today');
             } else {
@@ -158,7 +192,7 @@ $(document).ready(function () {
             $(".recovered").text("Total Recovered: " + recovered);
 
             var todaysDeaths = covidResponse.response[0].deaths.new;
-
+            // if the response is null for deaths today changes display from null to no new cases today otherwise displays the new deaths
             if (todaysDeaths === null) {
                 $(".todaysDeaths").text('No new deaths today');
             } else {
@@ -170,7 +204,7 @@ $(document).ready(function () {
             $(".totalDeaths").text("Total Deaths: " + totalDeaths);
 
             var testTotal = covidResponse.response[0].tests.total;
-
+            // accounts for some counties not reporting testing done inforamtion 
             if (testTotal === null) {
                 $(".testTotal").text("Amount of Tests Done: unknown");
             } else {
@@ -195,9 +229,9 @@ $(document).ready(function () {
                 var div = $('<div>');
                 
                 if (nyResponse.response.docs[i].multimedia.length !== 0) {
-                    var img = $('<img>').attr({'src': `https://www.nytimes.com/${nyResponse.response.docs[i].multimedia[19].url}`, 'alt': 'New York Times Thumbnail', 'class': 'nyImg'});
+                    var img = $('<img>').attr({'src': `https://www.nytimes.com/${nyResponse.response.docs[i].multimedia[19].url}`, 'alt': 'New York Times Thumbnail', 'class': 'nyImg imgShadow'});
                 } else {
-                    var img = $('<img>').attr({'src': 'https://i.pinimg.com/originals/c4/81/1d/c4811d59c17568b2ea75b1327d0dfc9e.jpg', 'alt': 'New York Times Thumbnail', 'class': 'nyImg'});
+                    var img = $('<img>').attr({'src': 'https://i.pinimg.com/originals/c4/81/1d/c4811d59c17568b2ea75b1327d0dfc9e.jpg', 'alt': 'New York Times Thumbnail', 'class': 'nyImg imgShadow'});
                     img.css('width', '150px')
                 }
 
@@ -222,23 +256,21 @@ $(document).ready(function () {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "bloomberg-market-and-financial-news.p.rapidapi.com",
-                "x-rapidapi-key": "7e99fbd181msh93eb9db94711373p1b2374jsn70b4f002fe55"
+                "x-rapidapi-key": "b2328dbcaamshe375150f85e5095p15818ejsnbf708ecc2a82"
             }
         }
-
-        // This is commented out so we don't go over our 500 requests limit. We'll turn it back on when we need to test it
+        // call to display the bloomberg financial articles 
+        $.ajax(bloomSettings).then(function (bloomResponse) {
+            console.log(bloomResponse);
     
-        // $.ajax(bloomSettings).then(function (bloomResponse) {
-        //     console.log(bloomResponse);
-    
-        //     for (var i = 0; i < 3; i++) {
-        //         $(`.finArt${i}`).text(bloomResponse.stories[i].title);
-        //         $(`.finArt${i}`).attr("href", bloomResponse.stories[i].shortURL);
-        //         $(`.finArt${i}Img`).attr("src", bloomResponse.stories[i].thumbnailImage)
-        //     }
-        // }).catch(function (error) {
-        //     console.log(error)
-        // });
+            for (var i = 0; i < 3; i++) {
+                $(`.finArt${i}`).text(bloomResponse.stories[i].title);
+                $(`.finArt${i}`).attr("href", bloomResponse.stories[i].shortURL);
+                $(`.finArt${i}Img`).attr("src", bloomResponse.stories[i].thumbnailImage).addClass("imgShadow")
+            }
+        }).catch(function (error) {
+            console.log(error)
+        });
     }
 })
 
