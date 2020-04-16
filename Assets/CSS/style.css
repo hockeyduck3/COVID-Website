@@ -72,12 +72,12 @@ footer {
     box-shadow: 7px 11px 5px -5px black;
 }
 
-.bluelinks {
+.blueLink {
     color: blue;
     text-decoration: none;
     font-size: large;
 }
-.bluelinks:hover {
+.blueLink:hover {
     color:green;
 }
 
