@@ -1,3 +1,7 @@
+.top-bar {
+    box-shadow: 7px 11px 5px -5px black;
+}
+
 html {
     height: 100%;
     overflow-x: hidden;
@@ -17,6 +21,10 @@ header, .top-bar {
 
 .grid-container {
     padding-top: 50px;
+}
+
+.grid-x {
+    margin-top: 20px;
 }
 
 .card {
@@ -40,7 +48,7 @@ button:focus {
 }
 
 h4, #links {
-    font-size: larger;
+    font-size: x-large;
     text-decoration: underline;
     font-weight: bold;
     color: #5d5c61;
@@ -57,6 +65,10 @@ footer {
     width: 100%;
     text-align: center;
     color: #5d5c61;
+}
+
+#footerstuff {
+    box-shadow: 7px 11px 5px -5px black;
 }
 
 #links {
