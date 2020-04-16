@@ -56,8 +56,8 @@ h4, #links {
     font-family: 'Cinzel', serif;
 }
 
-a {
-    color: black;
+h5 {
+    text-align: center;
 }
 
 footer {
@@ -73,8 +73,13 @@ footer {
     box-shadow: 7px 11px 5px -5px black;
 }
 
-#links {
+.blueLink {
     color: blue;
+    text-decoration: none;
+    font-size: large;
+}
+.blueLink:hover {
+    color:green;
 }
 
 .modal {
@@ -119,4 +124,9 @@ footer {
     background-color: #747474;
 }
 
-
+img {
+    border: 1px solid;
+    padding: 2px;
+    box-shadow: 2px 5px #3b3b3b;
+    margin: 6px
+}

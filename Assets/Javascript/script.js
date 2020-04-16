@@ -76,13 +76,13 @@ $(document).ready(function () {
                         img.css('width', '150px')
                     }
 
-                    var articleLink = $('<a>');
+                    // var articleLink = $('<a>');
 
-                    var articleTitle = $('<h4 style="text-decoration: none; color: blue; font-size: medium">').text(nyResponse.response.docs[i].headline.main);
+                    var articleParagraph = $('<p>').text(`${nyResponse.response.docs[i].lead_paragraph}...${$('<a>').attr({'href': nyResponse.response.docs[i].web_url, 'target': '_blank'}).text('Read more.')}`)
                     
-                    articleLink.append(articleTitle).attr({'href': nyResponse.response.docs[i].web_url, 'target': '_blank'});
+                    // articleLink.append(articleTitle).attr({'href': nyResponse.response.docs[i].web_url, 'target': '_blank'});
 
-                    div.append(img, articleLink);
+                    div.append(img, articleParagraph);
 
                     $('.articleSection').append(div);
                 }
@@ -193,21 +193,23 @@ $(document).ready(function () {
 
             for (var i = 0; i < 3; i++) {
                 var div = $('<div>');
-              
+                
                 if (nyResponse.response.docs[i].multimedia.length !== 0) {
-                    var img = $('<img>').attr('src', `https://www.nytimes.com/${nyResponse.response.docs[i].multimedia[19].url}`);
+                    var img = $('<img>').attr({'src': `https://www.nytimes.com/${nyResponse.response.docs[i].multimedia[19].url}`, 'alt': 'New York Times Thumbnail'});
                 } else {
-                    var img = $('<img>').attr('src', 'https://i.pinimg.com/originals/c4/81/1d/c4811d59c17568b2ea75b1327d0dfc9e.jpg');
+                    var img = $('<img>').attr({'src': 'https://i.pinimg.com/originals/c4/81/1d/c4811d59c17568b2ea75b1327d0dfc9e.jpg', 'alt': 'New York Times Thumbnail'});
                     img.css('width', '150px')
                 }
 
-                var articleLink = $('<a>');
+                var articleLink = $('<a>').attr({'href': nyResponse.response.docs[i].web_url, 'target': '_blank', 'class': 'blueLink'});
+              
+                articleLink.text('Read more.');
 
-                var articleTitle = $('<h4 style="text-decoration: none; color: blue; font-size: medium">').text(nyResponse.response.docs[i].headline.main);
-                
-                articleLink.append(articleTitle).attr({'href': nyResponse.response.docs[i].web_url, 'target': '_blank'});
+                var articleParagraph = $('<p>').text(nyResponse.response.docs[i].lead_paragraph + '.. ');
 
-                div.append(img, articleLink);
+                articleParagraph.append(articleLink);
+              
+                div.append(img, articleParagraph);
 
                 $('.articleSection').append(div);
             }
