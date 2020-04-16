@@ -52,7 +52,8 @@ h4, #links {
     font-size: x-large;
     text-decoration: underline;
     font-weight: bold;
-    color: #5d5c61;
+    color: #5d5c61;   
+    font-family: 'Cinzel', serif;
 }
 
 a {
@@ -109,3 +110,13 @@ footer {
     font-size: 28px;
     font-weight: bold;
 }
+
+.top20 {
+    background-color: #747474;
+}
+
+.searcher {
+    background-color: #747474;
+}
+
+
