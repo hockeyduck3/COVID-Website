@@ -97,3 +97,11 @@ footer {
     font-size: 28px;
     font-weight: bold;
 }
+
+
+img {
+    border: 1px solid;
+    padding: 2px;
+    box-shadow: 2px 5px #3b3b3b;
+    margin: 6px
+}
