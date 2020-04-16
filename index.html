@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="shortcut icon" type="image/x-icon" href="https://www.centennialco.gov/files/sharedassets/public/images/residents/covid-19.png?dimension=pageimage&w=480"/>
+  <link rel="shortcut icon" type="image/x-icon"
+    href="https://www.centennialco.gov/files/sharedassets/public/images/residents/covid-19.png?dimension=pageimage&w=480" />
   <title>COVID-19 Info</title>
   <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css">
@@ -22,7 +23,7 @@
         </ul>
       </div>
       <div style="-webkit-flex: 1 0 auto;-ms-flex: 1 0 auto;flex: 1 0 auto; font-size: 40px;">
-        <div>The Cost of Covid-19</div>
+        <h1>The Cost of Covid-19</h1>
       </div>
       <div class="top-bar-right">
         <button class="button top20" type="button" data-toggle="example-dropdown-1">Top 20 Most Viewed
@@ -63,53 +64,16 @@
     </div>
   </div>
 
-  <div class="grid-container">
-    <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-      <div class="cell">
-        <div class="card">
+  <div class="grid-x grid-margin-x">
 
-          <div class="card-section">
-            <h4>Covid-19 Articles</h4>
-
-            <div class="articleSection">
-              
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-
-      <div class="cell">
-        <div class="card">
-          <div class="card-section">
-            
-            <h4>World Financial News</h4>
-          
-            <div>
-              <img class="finArt0Img" src="" alt="">
-              <a class="finArt0" target="_blank" id="links"></a>
-              <br>
-
-              <img class="finArt1Img" src="" alt="">
-              <a class="finArt1" target="_blank" id="links"></a>
-              <br>
-              
-              <img class="finArt2Img" src="" alt="">
-              <a class="finArt2" target="_blank" id="links"></a>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      
-      <div class="cell">
+    <div class="cell medium-3 large-offset-1">
+      <div class="grid-y" style="height:45%">
         <div class="card">
 
           <div class="card-section">
             <h4 id="currentCases">Current Cases</h4>
             <!-- all of the covid data is currently going into this div -->
-            <div>
+            <div style="font-size: x-large;">
               <!-- displays the new cases today in the country  -->
               <div class="newCases"></div>
               <!-- displays the total actives cases as of today    -->
@@ -126,12 +90,101 @@
           </div>
         </div>
       </div>
+      <div class="grid-y" style="height:55%">
+        <div class="card">
+
+          <div class="card-section">
+            <h4>Covid-19 Tips and Tricks</h4>
+            <ul style="list-style-type: none; font-size: x-large; margin-left: 20px;">
+              <li>Remember to wash your hands</li>
+              <br>
+              <li>Wear a mask when you are in public</li>
+              <br>
+              <li>Stay at least 6 feet apart</li>
+            </ul>
+            
+            <div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
+
+    <div class="cell medium-7">
+
+
+
+      <div class="card">
+        <div class="card-section">
+
+          <h4>World Financial News</h4>
+
+          <div>
+            <img class="finArt0Img" src="" alt="">
+            <a class="finArt0" target="_blank" id="links"></a>
+            <br>
+
+            <img class="finArt1Img" src="" alt="">
+            <a class="finArt1" target="_blank" id="links"></a>
+            <br>
+
+            <img class="finArt2Img" src="" alt="">
+            <a class="finArt2" target="_blank" id="links"></a>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+      <div class="cell">
+        <div class="card">
+
+          <div class="card-section">
+            <h4>Covid-19 Articles</h4>
+            <div class="grid-x grid-margin-x">
+
+
+              <div class="cell medium-5 large-offset-1">
+
+
+
+                <div class="articleSection">
+
+                </div>
+              </div>
+              
+              
+              
+              <div class="cell medium-5">
+                
+                
+                
+                <div class="articleSection">
+                  
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="cell medium-1">
+
   </div>
 
 
   <footer>
-    <div class="row callout expanded secondary">
+    <div class="row callout expanded secondary" id="footerstuff">
 
       <div class="large-4 columns">
         <h5></h5>
