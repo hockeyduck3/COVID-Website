@@ -78,8 +78,6 @@ $(document).ready(function () {
 
                     // var articleLink = $('<a>');
 
-                    // var articleTitle = $('<h4 style="text-decoration: none; color: blue; font-size: medium">').text(nyResponse.response.docs[i].headline.main);
-
                     var articleParagraph = $('<p>').text(`${nyResponse.response.docs[i].lead_paragraph}...${$('<a>').attr({'href': nyResponse.response.docs[i].web_url, 'target': '_blank'}).text('Read more.')}`)
                     
                     // articleLink.append(articleTitle).attr({'href': nyResponse.response.docs[i].web_url, 'target': '_blank'});
@@ -204,13 +202,13 @@ $(document).ready(function () {
                 }
 
                 var articleLink = $('<a>').attr({'href': nyResponse.response.docs[i].web_url, 'target': '_blank', 'class': 'blueLink'});
-
+              
                 articleLink.text('Read more.');
 
                 var articleParagraph = $('<p>').text(nyResponse.response.docs[i].lead_paragraph + '.. ');
 
-                articleParagraph.append(articleLink)
-
+                articleParagraph.append(articleLink);
+              
                 div.append(img, articleParagraph);
 
                 $('.articleSection').append(div);
