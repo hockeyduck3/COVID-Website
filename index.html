@@ -24,7 +24,7 @@
         </ul>
       </div>
       <div style="-webkit-flex: 1 0 auto;-ms-flex: 1 0 auto;flex: 1 0 auto; font-size: 40px;">
-        <h1>The Cost of Covid-19</h1>
+        <h1>The Cost of Covid-<span class="nineteen">19</span></h1>
       </div>
       <div class="top-bar-right">
         <button class="button top20" type="button" data-toggle="example-dropdown-1">Top 20 Most Viewed
@@ -74,19 +74,19 @@
           <div class="card-section">
             <h4 id="currentCases">Current Cases</h4>
             <!-- all of the covid data is currently going into this div -->
-            <div style="font-size: x-large;">
+            <div style="font-size: 20px;">
               <!-- displays the new cases today in the country  -->
-              <div class="newCases"></div>
+              <div class="newCases caseText"></div>
               <!-- displays the total actives cases as of today    -->
-              <div class="activeCases"></div>
+              <div class="activeCases caseText"></div>
               <!-- Shows the ammount of recovered cases as of today   -->
-              <div class="recovered"></div>
+              <div class="recovered caseText"></div>
               <!-- Shows the deaths that have happned in that country today     -->
-              <div class="todaysDeaths"></div>
+              <div class="todaysDeaths caseText"></div>
               <!-- Shows the total amount of deaths in that country  -->
-              <div class="totalDeaths"></div>
+              <div class="totalDeaths caseText"></div>
               <!-- Shows how many tests that country has performed  -->
-              <div class="testTotal"></div>
+              <div class="testTotal caseText"></div>
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@
         <div class="card">
 
           <div class="card-section">
-            <h4>Covid-19 Tips and Tricks</h4>
+            <h4>Covid-<span class="nineteen">19</span> Tips and Tricks</h4>
             <ul style="list-style-type: none; font-size: x-large; margin-left: 20px;">
               <li>Remember to wash your hands</li>
               <br>
@@ -126,18 +126,23 @@
           <h4>World Financial News</h4>
           <div class="grid-x grid-margin-x">
 
-            <div class="cell medium-3 large-offset-1">
+            <div class="cell medium-10 large-offset-1">
+            
+
+            <div class="row">
               <img class="finArt0Img finArtImg" src="https://placehold.it/400x200&text=Picture" alt="">
+              <a class="finArt0 finArt" target="_blank" id="links"></a>
+            </div>
+            
+            <div class="row">
               <img class="finArt1Img finArtImg" src="https://placehold.it/400x200&text=Picture" alt="">
-              <img class="finArt2Img finArtImg" src="https://placehold.it/400x200&text=Picture" alt="">
+              <a class="finArt1 finArt" target="_blank" id="links"></a>
             </div>
 
-            <div class="cell medium-7">
-              <a class="finArt0" target="_blank" id="links"></a>
-              <a class="finArt1" target="_blank" id="links"></a>
-              <a class="finArt2" target="_blank" id="links"></a>
+            <div class="row">
+              <img class="finArt2Img finArtImg" src="https://placehold.it/400x200&text=Picture" alt="">
+              <a class="finArt2 finArt" target="_blank" id="links"></a>
             </div>
-            <div class="cell medium-1">
 
             </div>
           </div>
@@ -149,17 +154,35 @@
       <div class="card">
 
         <div class="card-section">
-          <h4>Covid-19 Articles</h4>
-          <div class="grid-x grid-margin-x">
+          <h4>Covid-<span class="nineteen">19</span> Articles</h4>
+          <div class="grid-x grid-margin-x row">
 
             <div class="cell medium-10 large-offset-1">
-              <div class="articleSection">
+              <div class="articleSection0">
               </div>
             </div>
-            <div class="cell medium-1">
+          </div>
 
+          <hr>
+
+          <div class="grid-x grid-margin-x row">
+
+            <div class="cell medium-10 large-offset-1">
+              <div class="articleSection1">
+              </div>
             </div>
           </div>
+
+          <hr>
+
+          <div class="grid-x grid-margin-x row">
+
+            <div class="cell medium-10 large-offset-1">
+              <div class="articleSection2">
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -194,7 +217,7 @@
 
       <div class="medium-6 columns">
         <ul class="menu align-right">
-          <li class="menu-text">Copyright © 2020</li>
+          <li class="menu-text copyright">Copyright © 2020</li>
         </ul>
       </div>
     </div>
