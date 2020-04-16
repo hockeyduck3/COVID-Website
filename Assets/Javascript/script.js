@@ -101,17 +101,17 @@ $(document).ready(function () {
 
             // This is commented out so we don't go over our 500 requests limit. We'll turn it back on when we need to test it
         
-            // $.ajax(bloomSettings).then(function (bloomResponse) {
-            //     console.log(bloomResponse);
+            $.ajax(bloomSettings).then(function (bloomResponse) {
+                console.log(bloomResponse);
         
-            //     for (var i = 0; i < 3; i++) {
-            //         $(`.finArt${i}`).text(bloomResponse.stories[i].title);
-            //         $(`.finArt${i}`).attr("href", bloomResponse.stories[i].shortURL);
-            //         $(`.finArt${i}Img`).attr("src", bloomResponse.stories[i].thumbnailImage)
-            //     }
-            // }).catch(function (error) {
-            //     console.log(error)
-            // });
+                for (var i = 0; i < 3; i++) {
+                    $(`.finArt${i}`).text(bloomResponse.stories[i].title);
+                    $(`.finArt${i}`).attr("href", bloomResponse.stories[i].shortURL);
+                    $(`.finArt${i}Img`).attr("src", bloomResponse.stories[i].thumbnailImage)
+                }
+            }).catch(function (error) {
+                console.log(error)
+            });
         }
     }
 
@@ -214,6 +214,31 @@ $(document).ready(function () {
                 $('.articleSection').append(div);
             }
         })
+
+        var bloomSettings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://bloomberg-market-and-financial-news.p.rapidapi.com/stories/list?template=CURRENCY&id=usdjpy",
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "bloomberg-market-and-financial-news.p.rapidapi.com",
+                "x-rapidapi-key": "7e99fbd181msh93eb9db94711373p1b2374jsn70b4f002fe55"
+            }
+        }
+
+        // This is commented out so we don't go over our 500 requests limit. We'll turn it back on when we need to test it
+    
+        // $.ajax(bloomSettings).then(function (bloomResponse) {
+        //     console.log(bloomResponse);
+    
+        //     for (var i = 0; i < 3; i++) {
+        //         $(`.finArt${i}`).text(bloomResponse.stories[i].title);
+        //         $(`.finArt${i}`).attr("href", bloomResponse.stories[i].shortURL);
+        //         $(`.finArt${i}Img`).attr("src", bloomResponse.stories[i].thumbnailImage)
+        //     }
+        // }).catch(function (error) {
+        //     console.log(error)
+        // });
     }
 })
 
