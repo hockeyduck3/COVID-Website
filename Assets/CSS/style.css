@@ -1,5 +1,3 @@
-
-
 html {
     height: 100%;
     overflow-x: hidden;
@@ -14,6 +12,7 @@ body {
 
 header, .top-bar {
     background-color: lightgray;
+    font-family: fantasy;
 }
 
 .grid-container {
