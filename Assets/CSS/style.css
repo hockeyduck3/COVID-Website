@@ -11,12 +11,13 @@ body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #7395ae;
+    background-color: #501b1d;
 }
 
 header, .top-bar {
     background-color: lightgray;
     font-family: fantasy;
+    color: #97aabd;S
 }
 
 .grid-container {
@@ -51,7 +52,8 @@ h4, #links {
     font-size: x-large;
     text-decoration: underline;
     font-weight: bold;
-    color: #5d5c61;
+    color: #5d5c61;   
+    font-family: 'Cinzel', serif;
 }
 
 h5 {
@@ -114,6 +116,13 @@ footer {
     font-weight: bold;
 }
 
+.top20 {
+    background-color: #747474;
+}
+
+.searcher {
+    background-color: #747474;
+}
 
 img {
     border: 1px solid;
@@ -121,4 +130,3 @@ img {
     box-shadow: 2px 5px #3b3b3b;
     margin: 6px
 }
-
