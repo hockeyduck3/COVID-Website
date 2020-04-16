@@ -55,8 +55,8 @@ h4, #links {
     color: #5d5c61;
 }
 
-a {
-    color: black;
+h5 {
+    text-align: center;
 }
 
 footer {
@@ -72,8 +72,13 @@ footer {
     box-shadow: 7px 11px 5px -5px black;
 }
 
-#links {
+.bluelinks {
     color: blue;
+    text-decoration: none;
+    font-size: large;
+}
+.bluelinks:hover {
+    color:green;
 }
 
 .modal {

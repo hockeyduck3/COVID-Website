@@ -65,7 +65,7 @@ $(document).ready(function () {
 
                     var articleLink = $('<a>');
 
-                    var articleTitle = $('<h4 style="text-decoration: none; color: blue; font-size: medium">').text(nyResponse.response.docs[i].headline.main);
+                    var articleTitle = $('<h4>').text(nyResponse.response.docs[i].headline.main).addClass("bluelinks");
                     
                     articleLink.append(articleTitle).attr({'href': nyResponse.response.docs[i].web_url, 'target': '_blank'});
 
@@ -185,7 +185,7 @@ $(document).ready(function () {
 
                 var articleLink = $('<a>');
 
-                var articleTitle = $('<h4 style="text-decoration: none; color: blue; font-size: medium">').text(nyResponse.response.docs[i].headline.main);
+                var articleTitle = $('<h4>').text(nyResponse.response.docs[i].headline.main).addClass("bluelinks");
                 
                 articleLink.append(articleTitle).attr({'href': nyResponse.response.docs[i].web_url, 'target': '_blank'});
 
