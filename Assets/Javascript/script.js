@@ -137,7 +137,7 @@ $(document).ready(function () {
 
             localStorage.setItem('lastSearch', covidResponse.parameters.country)
 
-            $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, testTotal').empty();
+            $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, .testTotal').empty();
 
             $('#currentCases').text(`Current Cases: ${covidResponse.parameters.country}`)
 
@@ -189,15 +189,15 @@ $(document).ready(function () {
         }).then(function (nyResponse) {
             console.log(nyResponse);
 
-            $('.articleSection').empty();
+            $('.articleSection0, .articleSection1, .articleSection2').empty();
 
             for (var i = 0; i < 3; i++) {
                 var div = $('<div>');
                 
                 if (nyResponse.response.docs[i].multimedia.length !== 0) {
-                    var img = $('<img>').attr({'src': `https://www.nytimes.com/${nyResponse.response.docs[i].multimedia[19].url}`, 'alt': 'New York Times Thumbnail'});
+                    var img = $('<img>').attr({'src': `https://www.nytimes.com/${nyResponse.response.docs[i].multimedia[19].url}`, 'alt': 'New York Times Thumbnail', 'class': 'nyImg'});
                 } else {
-                    var img = $('<img>').attr({'src': 'https://i.pinimg.com/originals/c4/81/1d/c4811d59c17568b2ea75b1327d0dfc9e.jpg', 'alt': 'New York Times Thumbnail'});
+                    var img = $('<img>').attr({'src': 'https://i.pinimg.com/originals/c4/81/1d/c4811d59c17568b2ea75b1327d0dfc9e.jpg', 'alt': 'New York Times Thumbnail', 'class': 'nyImg'});
                     img.css('width', '150px')
                 }
 
@@ -211,7 +211,7 @@ $(document).ready(function () {
               
                 div.append(img, articleParagraph);
 
-                $('.articleSection').append(div);
+                $(`.articleSection${i}`).append(div);
             }
         })
 
