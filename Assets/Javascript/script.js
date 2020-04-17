@@ -141,13 +141,29 @@ $(document).ready(function () {
     // Function to account for the response on the covid API - many countries with 2 or more words in their name have a "-" seperating the words, this accounts for the user not knowing this. 
     function userInputCheck() {
         // If the user searches for the United States
-        if (userInput === 'United States' || userInput === 'united states' || userInput === 'United states' || userInput === 'America' || userInput === 'america') {
+        if (userInput === 'United States' || userInput === 'united states' || userInput === 'United states' || userInput === 'America' || userInput === 'america' || userInput === 'US' || userInput === 'us') {
             userInput = 'USA';
         }
 
-        // If the user searches for South Korea
+        // If statements to fix likely user errors due to not knowing the needed input fro mthe API to get a response 
         if (userInput === 'South Korea' || userInput === 'south korea') {
             userInput = 'S-Korea';
+        }
+        if (userInput === 'The Central African Republic' || userInput === 'Central African Republic') {
+            userInput = 'CAR';
+        }
+        if (userInput === 'Curaçao' || userInput === 'curaçao' || userInput === 'curacao' || userInput === 'Curacao') {
+            userInput = "Cura&ccedil;ao";
+        }
+        if (userInput === 'Democratic Republic of the Congo' || userInput === 'Congo' || userInput === 'congo' || userInput === 'democratic republic of the congo') {
+            userInput = 'DRC';
+        }
+        if (userInput === 'United Arab Emirates' || userInput === 'united arab emirates') {
+            userInput = 'UAE';   
+
+        }
+        if (userInput === 'United Kingdom' || userInput === 'united kingdom' || userInput === 'U.K.' || userInput === 'u.k.') {
+            userInput = 'UK';
         }
 
         // If none of the other if statements run then this else statement will grab the userInput and replace any spaces between words with a '-'. For example, 'Hong Kong' will become 'Hong-Kong'.
