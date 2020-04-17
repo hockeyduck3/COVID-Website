@@ -11,24 +11,8 @@ $(document).ready(function () {
     $('#search').on('keydown', function (event) {
         // Check and see if the user clicked the 'Enter' key
         if (event.keyCode === 13) {
-            // If they did then check and see if the searchbar is blank
-            if ($('#search').val().trim() === '') {
-                // If it is empty then display this error
-                $('.errorText').text('Search field cannot be empty');
-                displayError();
-            } 
-            
-            // If it's not empty
-            else {
-                // Set the userInput variable to the value in the searchbar and remove any extra whitespaces in it
-                userInput = $('#search').val().trim();
-
-                // Set the variable loadOrSearch to search
-                loadOrSearch = 'search';
-
-                // Run the userInputCheck function
-                userInputCheck();
-            }
+            // If they did then run the clickSearch function
+            clickSearch();
         } 
     })
 
@@ -97,9 +81,9 @@ $(document).ready(function () {
     }
 
     // This function will activate when the user clicks a button on the page
-    function clickSearch(event) {
-        // First, check and see if the button that was clicked has the class 'cityBtn'
-        if ($(event.target).hasClass('cityBtn')) {
+    function clickSearch() {
+        // First, check and see if what triggered the function has the class 'cityBtn'
+        if ($(this).hasClass('cityBtn')) {
             // If it does then set the variable to the text of the button that the suer clicked
             userInput = $(event.target).text();
 
@@ -112,11 +96,11 @@ $(document).ready(function () {
         } 
         
         // Or if the user just clicked on the top20 button, then do an empty return because we don't want anything to happen
-        else if ($(event.target).hasClass('top20')) {
+        else if ($(this).hasClass('top20')) {
             return;
         } 
         
-        // Finally if neither of the if statements above run, then that means the user clicked the 'search button' in the navbar
+        // Finally if neither of the if statements above run, then that means the user either clicked on the 'search button' in the navbar or hit ther 'Enter' button on their keyboard
         else {
             // First check and see if the searchbar is empty
             if ($('#search').val().trim() === '') {
@@ -124,6 +108,13 @@ $(document).ready(function () {
                 $('.errorText').text('Search field cannot be empty');
                 displayError();
             } 
+            
+            // Then check and see if the search bar has both letters and numbers in it's value
+            else if ($('#search').val().trim().match(/[a-z]/i) && $('#search').val().trim().match(/[0-9]/)) {
+                // If it does then display this error
+                $('.errorText').text('Search field cannot contain letters and numbers');
+                displayError();
+            }
             
             // If it is not empty
             else {
@@ -138,6 +129,7 @@ $(document).ready(function () {
             }
         }
     }
+    
     // Function to account for the response on the covid API - many countries with 2 or more words in their name have a "-" seperating the words, this accounts for the user not knowing this. 
     function userInputCheck() {
         // If the user searches for the United States
@@ -248,11 +240,11 @@ $(document).ready(function () {
 
                 // After everything has been set then it will show the user the results using jQuery's slide down animation
                 $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, .testTotal').fadeIn('slow');
+                
+                // Run the nyTimesSearch function
+                nyTimesSearch();
             }
         });
-
-        // Run the nyTimesSearch function
-        nyTimesSearch();
     }
 
     // Function for showing the New York Times articles

@@ -29,6 +29,11 @@ header, .top-bar, .top20, .searcher, #search {
     border-radius: 0.5rem;
 }
 
+.button:hover {
+    background-color: rgb(116, 116, 116);
+    color: white;
+}
+
 button:focus {
     outline: none;
 }
@@ -41,6 +46,15 @@ button:focus {
     background-color: white;
     color: black;
     font-weight: bold;
+}
+
+.cityBtn {
+    color: black;
+}
+
+.cityBtn:hover {
+    color: rgb(143, 143, 143);
+    transition: ease-in 0.3s;
 }
 
 .searcher {
