@@ -115,6 +115,13 @@ $(document).ready(function () {
                 $('.errorText').text('Search field cannot contain letters and numbers');
                 displayError();
             }
+
+            // Check and see if the search bar has only numbers in it
+            else if ($('#search').val().trim().match(/[0-9]/)) {
+                // If it does then display this error
+                $('.errorText').text('Search field cannot contain only numbers');
+                displayError();
+            }
             
             // If it is not empty
             else {
@@ -129,16 +136,16 @@ $(document).ready(function () {
             }
         }
     }
-    
+
     // Function to account for the response on the covid API - many countries with 2 or more words in their name have a "-" seperating the words, this accounts for the user not knowing this. 
     function userInputCheck() {
         // If the user searches for the United States
-        if (userInput === 'United States' || userInput === 'united states' || userInput === 'United states' || userInput === 'America' || userInput === 'america') {
+        if (userInput.toLowerCase() === 'united states' || userInput.toLowerCase() === 'united states of america' ||  userInput.toLowerCase() === 'america') {
             userInput = 'USA';
         }
 
         // If the user searches for South Korea
-        if (userInput === 'South Korea' || userInput === 'south korea') {
+        if (userInput.toLowerCase() === 'south korea') {
             userInput = 'S-Korea';
         }
 
@@ -146,6 +153,10 @@ $(document).ready(function () {
         else {
             userInput = userInput.replace(/\s+/g, '-');
         }
+
+        // Reset the search value to blank 
+        $('#search').val('');
+
 
         // Run the search function
         search();
@@ -334,9 +345,10 @@ $(document).ready(function () {
     // Variable for the modal
     var modal = $('#errorModal');
 
-    // When the user clicks the close button on the modal it'll make the modal slide up
+    // When the user clicks the close button on the modal it'll make the modal slide up and reset the search value to blank
     $('.close').click(function () {
         modal.slideUp('fast');
+        $('#search').val('');
     })
 
     // When anything on the document is clicked
@@ -345,6 +357,9 @@ $(document).ready(function () {
         if ($(event.target).hasClass('modal')) {
             // If it does then get rid of the error modal using the slide up animation
             modal.slideUp('fast');
+
+            // And reset the search value to blank 
+            $('#search').val('');
         }
     })
 })
