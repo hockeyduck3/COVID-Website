@@ -228,22 +228,32 @@ $(document).ready(function () {
 
                 // Variable for the new cases
                 var newCases = covidResponse.response[0].cases.new;
-
+                
+                
                 // if the response is null, new cases today changes display from null to 'No new cases today'. Otherwise it displays the new cases.
                 if (newCases === null) {
                     $(".newCases").text('No new cases today');
                 } else {
+                    // Add comma's where needed
+                    newCases = newCases.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
                     $(".newCases").text("New Cases Today: " + newCases);
                 }
 
                 // Variable for the active cases
                 var activeCases = covidResponse.response[0].cases.active;
 
+                // Add comma's where needed
+                activeCases = activeCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
                 // Change the text to the total active cases for that country
                 $(".activeCases").text("Total Active Cases: " + activeCases);
 
                 // Variable for the recovered
                 var recovered = covidResponse.response[0].cases.recovered;
+
+                // Add comma's where needed
+                recovered = recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
                 // Change the text to the total recovered case for that country
                 $(".recovered").text("Total Recovered: " + recovered);
@@ -255,11 +265,17 @@ $(document).ready(function () {
                 if (todaysDeaths === null) {
                     $(".todaysDeaths").text('No new deaths today');
                 } else {
+                    // Add comma's where needed
+                    todaysDeaths = todaysDeaths.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
                     $(".todaysDeaths").text("New Deaths Today: " + todaysDeaths);
                 }
 
                 // Variable for the total deaths
                 var totalDeaths = covidResponse.response[0].deaths.total;
+
+                // Add comma's where needed
+                totalDeaths = totalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
                 // Change the text to the total deaths for that country
                 $(".totalDeaths").text("Total Deaths: " + totalDeaths);
@@ -267,10 +283,14 @@ $(document).ready(function () {
                 // Variable for total test done
                 var testTotal = covidResponse.response[0].tests.total;
 
+                
                 // If the country has not reported there total number of tests, then it will display 'unknown'. Otherwise it will display that number of tests done.
                 if (testTotal === null) {
                     $(".testTotal").text("Amount of Tests Done: unknown");
                 } else {
+                    // Add comma's where needed
+                    testTotal = testTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
                     $(".testTotal").text("Amount of Tests Done: " + testTotal);
                 }
 
