@@ -140,7 +140,7 @@ $(document).ready(function () {
     // Function to account for the response on the covid API - many countries with 2 or more words in their name have a "-" seperating the words, this accounts for the user not knowing this. 
     function userInputCheck() {
         // If the user searches for the United States
-        if (userInput.toLowerCase() === 'united states' || userInput.toLowerCase() === 'united states of america' ||  userInput.toLowerCase() === 'america') {
+        if (userInput.toLowerCase() === 'united states' || userInput.toLowerCase() === 'united states of america' ||  userInput.toLowerCase() === 'america' || userInput.toLowerCase() === 'us') {
             userInput = 'USA';
         }
 
