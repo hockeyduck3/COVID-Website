@@ -75,9 +75,9 @@ $(document).ready(function () {
         });
 
         // Then check and see if the user has made a previous search
-        if (localStorage.getItem('lastSearch') !== null) {
+        if (localStorage.getItem('lastSearchedCountry') !== null) {
             //If they have then grab the last searched country from local storage and set it to the userInput variable
-            userInput = localStorage.getItem('lastSearch');
+            userInput = localStorage.getItem('lastSearchedCountry');
 
             // Set the variable loadOrSearch to search
             loadOrSearch = 'search';
@@ -177,6 +177,7 @@ $(document).ready(function () {
         $.ajax(covidSettings).then(function (covidResponse) {
             // Display the covid response
             console.log(covidResponse);
+            
 
             // Display an error if the country could not be found
             if (covidResponse.results === 0) {
@@ -186,11 +187,11 @@ $(document).ready(function () {
             
             // If the country was found
             else {
-                // Then get rid of the previous results using jQuery's slide up animation
-                $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, .testTotal').slideUp('fast')
-
+                // Hide the previous results
+                $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, .testTotal').hide();
+    
                 // Save the user's search to the user's local storage
-                localStorage.setItem('lastSearch', covidResponse.parameters.country)
+                localStorage.setItem('lastSearchedCountry', covidResponse.parameters.country)
 
                 // Empty out the previous results
                 $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, .testTotal').empty();
@@ -247,7 +248,7 @@ $(document).ready(function () {
                 }
 
                 // After everything has been set then it will show the user the results using jQuery's slide down animation
-                $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, .testTotal').slideDown('slow');
+                $('.newCases, .activeCases, .recovered, .todaysDeaths, .totalDeaths, .testTotal').fadeIn('slow');
             }
         });
 

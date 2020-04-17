@@ -10,17 +10,49 @@ body {
     background-color: rgb(114, 56, 56);
 }
 
-header, .top-bar {
-    background-color: rgb(75, 75, 75);
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    box-shadow: 0 1px 5px 1px black;
-}
-
 .nineteen {
     color: red;
 }
 
+/* Nav section */
+header, .top-bar {
+    background-color: rgb(75, 75, 75);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+header, .top-bar, .top20, .searcher, #search {
+    box-shadow: 0 1px 5px 1px black;
+}
+
+.button, #search {
+    border-radius: 0.5rem;
+}
+
+button:focus {
+    outline: none;
+}
+
+.top20 {
+    margin-top: 1rem;
+}
+
+.top20, .searcher {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+}
+
+.searcher {
+    margin-top: 1px;
+}
+
+h1 {
+    margin-top: 5px;
+    font-family: 'Cinzel', serif;
+}
+
+/* Main section */
 .grid-container {
     padding-top: 50px;
 }
@@ -39,24 +71,6 @@ header, .top-bar {
     border-radius: 0.5rem;
 }
 
-.button {
-    border-radius: 0.5rem;
-}
-
-button:focus {
-    outline: none;
-}
-
-.top20 {
-    margin-top: 1rem;
-}
-
-h1 {
-    margin-top: 5px;
-    font-family: 'Cinzel', serif;
-    outline: black;
-}
-
 h4{
     font-size: x-large;
     text-decoration: underline;
@@ -66,22 +80,10 @@ h4{
 }
 
 /* #links {
-
-
-
 } */
 
 h5 {
     text-align: center;
-}
-
-footer {
-    margin-top: auto;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    color: #5d5c61;
 }
 
 .blueLink {
@@ -95,6 +97,41 @@ footer {
     transition: ease-in-out 0.2s;
 }
 
+.imgShadow {
+    border: 1px solid;
+    padding: 2px;
+    box-shadow: 2px 3px 2px 0px #3b3b3b;
+    margin: 6px
+}
+
+.nyImg {
+    float: left;
+    margin-right: 15px;
+}
+
+p {
+    text-align: justify;
+}
+
+.finArtImg {
+    width: 30%;
+    float: left;
+}
+
+.finArt {
+    font-size: 20px;
+}
+
+.caseText {
+    margin-top: 10px;
+}
+
+.disclaimer {
+    font-size: 12px;
+    color: lightgray;
+}
+
+/* Modal Styling */
 .modal {
     display: none; 
     position: fixed;
@@ -129,47 +166,14 @@ footer {
     font-weight: bold;
 }
 
-.top20, .searcher {
-    background-color: white;
-    color: black;
-    font-weight: bold;
-}
-
-.searcher {
-    margin-top: 1px;
-}
-
-#search {
-    border-radius: 0.5rem;
-}
-
-.imgShadow {
-    border: 1px solid;
-    padding: 2px;
-    box-shadow: 2px 5px #3b3b3b;
-    margin: 6px
-}
-
-.nyImg {
-    float: left;
-    margin-right: 15px;
-}
-
-p {
-    text-align: justify;
-}
-
-.finArtImg {
-    width: 30%;
-    float: left;
-}
-
-.finArt {
-    font-size: 20px;
-}
-
-.caseText {
-    margin-top: 10px;
+/* Footer section */
+footer {
+    margin-top: auto;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: #5d5c61;
 }
 
 #footerstuff {
@@ -179,9 +183,4 @@ p {
 
 .copyright {
     color: white !important;
-}
-
-.disclaimer {
-font-size: 12px;
-color: lightgray;
 }
