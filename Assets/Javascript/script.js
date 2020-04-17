@@ -178,7 +178,6 @@ $(document).ready(function () {
             // Display the covid response
             console.log(covidResponse);
             
-
             // Display an error if the country could not be found
             if (covidResponse.results === 0) {
                 $('.errorText').text('Country could not be found :(');
@@ -323,6 +322,15 @@ $(document).ready(function () {
                 // Then append the div to articleSection 0, 1, and 2, and fade in the results.
                 $(`.articleSection${i}`).append(div).fadeIn('slow');
             }
+
+           // Just in case if there is an error with 
+        }).catch(function (nyError) {
+            // Console log the error
+            console.log(nyError);
+
+            // Then display the error
+            $('.errorText').text(`Error: ${nyError.status} ${nyError.statusText}. Sorry about that :(`);
+            displayError();
         })
     }
 
