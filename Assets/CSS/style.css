@@ -198,3 +198,28 @@ footer {
 .copyright {
     color: white !important;
 }
+/* for cell phones */
+@media screen and (max-width: 550px) {
+    .grid {
+        width: 100%;
+    }
+.cell {
+    min-width: 100%;
+    min-height: 60%;
+}
+}
+
+/* top bar breaking between witdhs of 640 and 880 */
+
+/* @media screen and (max-width: 880px) and (min-width:551px){
+    h1 {font-size:medium}
+    .cell {
+    min-width: 100%;
+    min-height: 60%;
+    
+    }
+    .top20 {
+     max-width:fit-content
+    }
+   
+    } */
