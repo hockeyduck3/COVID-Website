@@ -148,20 +148,29 @@ $(document).ready(function () {
         if (userInput.toLowerCase() === 'south korea') {
             userInput = 'S-Korea';
         }
-        if (userInput === 'The Central African Republic' || userInput === 'Central African Republic') {
+
+        // If the user searches for the central african republic
+        if (userInput.toLowerCase() === 'the central african republic' || userInput.toLowerCase() === 'central african republic') {
             userInput = 'CAR';
         }
-        if (userInput === 'Curaçao' || userInput === 'curaçao' || userInput === 'curacao' || userInput === 'Curacao') {
+
+        // If the user searches for Curaçao
+        if (userInput.toLowerCase() === 'curaçao' || userInput.toLowerCase() === 'curacao') {
             userInput = "Cura&ccedil;ao";
         }
-        if (userInput === 'Democratic Republic of the Congo' || userInput === 'Congo' || userInput === 'congo' || userInput === 'democratic republic of the congo') {
+
+        // If the user searches for Congo
+        if (userInput.toLowerCase() === 'congo' || userInput.toLowerCase() === 'democratic republic of the congo') {
             userInput = 'DRC';
         }
-        if (userInput === 'United Arab Emirates' || userInput === 'united arab emirates') {
-            userInput = 'UAE';   
 
+        // If the user searches for the United Arab Emirates
+        if (userInput.toLowerCase() === 'united arab emirates') {
+            userInput = 'UAE';
         }
-        if (userInput === 'United Kingdom' || userInput === 'united kingdom' || userInput === 'U.K.' || userInput === 'u.k.') {
+
+        // If the user searches for the United Kingdom
+        if (userInput.toLowerCase() === 'united kingdom' || userInput.toLowerCase() === 'u.k.') {
             userInput = 'UK';
         }
 
