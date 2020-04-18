@@ -63,6 +63,9 @@ $(document).ready(function () {
             //If they have then grab the last searched country from local storage and set it to the userInput variable
             userInput = localStorage.getItem('lastSearchedCountry');
 
+            // Run the show results function
+            showResults();
+
             // Set the variable loadOrSearch to search
             loadOrSearch = 'search';
 
@@ -75,6 +78,15 @@ $(document).ready(function () {
             // Set loadOrSearch to load
             loadOrSearch = 'load';
 
+            // Hide the possible searches div using jQuery
+            $('.possibleSearches').hide();
+
+            // Remove the class of hide on the possible searches div so the css won't override jQuery
+            $('.possibleSearches').removeClass('hide');
+
+            // Slowly fade in the possible searches div
+            $('.possibleSearches').fadeIn('slow');
+
             // Run the nyTimesSearch
             nyTimesSearch();
         }
@@ -83,9 +95,18 @@ $(document).ready(function () {
     // This function will activate when the user clicks a button on the page
     function clickSearch() {
         // First, check and see if what triggered the function has the class 'cityBtn'
-        if ($(this).hasClass('cityBtn')) {
+        if ($(this).hasClass('cityBtn') || $(this).hasClass('firstBtns')) {
             // If it does then set the variable to the text of the button that the suer clicked
             userInput = $(event.target).text();
+
+            // Check and see if loadOrSearch is set to load
+            if (loadOrSearch === 'load') {
+                // If it is then fade out the possible searches div
+                $('.possibleSearches').fadeOut('fast');
+                
+                // Then run the show results function
+                showResults();
+            }
 
             // Set the loadOrSearch variable to search
             loadOrSearch = 'search';
@@ -102,6 +123,12 @@ $(document).ready(function () {
         
         // Finally if neither of the if statements above run, then that means the user either clicked on the 'search button' in the navbar or hit ther 'Enter' button on their keyboard
         else {
+            // Fade out the possible searches div. This is so that if the user decides to search within the search bar.
+            $('.possibleSearches').fadeOut('fast');
+             
+            // Run the show results function
+            showResults();
+
             // First check and see if the searchbar is empty
             if ($('#search').val().trim() === '') {
                 // If it is then display this error
@@ -380,6 +407,18 @@ $(document).ready(function () {
             $('.errorText').text(`Error: ${nyError.status} ${nyError.statusText}. Sorry about that :(`);
             displayError();
         })
+    }
+
+    // This function is used to show the results for Covid-19 in the country that the user chooses
+    function showResults() {
+        // Hide the results div using jQuery
+        $('.results').hide();
+
+        // Remove the class of hide from the results div. This way the css won't override the jQuery
+        $('.results').removeClass('hide');
+
+        // Slowly fade in the results
+        $('.results, #currentCases, .disclaimer').fadeIn('slow');
     }
 
     // This simple function will just display any error that occurs with a slide down animation
