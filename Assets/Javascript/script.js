@@ -404,7 +404,7 @@ $(document).ready(function () {
             console.log(nyError);
 
             // Then display the error
-            $('.errorText').text(`Error: ${nyError.status} ${nyError.statusText}. Sorry about that :(`);
+            $('.errorText').text(`We were unable to find any articles realated to COVID 19 for that Country. Sorry about that.`);
             displayError();
         })
     }
